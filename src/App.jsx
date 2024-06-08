@@ -1,47 +1,56 @@
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
-// import CartProvider from "./aux/CartContext";
-import { theme } from "./branding/theme";
+import { useState } from "react";
+import "./assets/styles/App.css";
+import Success from "./components/contact/Success";
+import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/NavBar";
-import Douglas from "./screens/Douglas";
-import FraxinusSmall from "./screens/FraxinusSmall";
-import Leylandii from "./screens/Leylandii";
-import Platanoides from "./screens/Platanoides";
-import PrunusAvium from "./screens/PrunusAvium";
-import PrunusSerrulata from "./screens/PrunusSerrulata";
-import PrunusTwin from "./screens/PrunusTwin";
-import RoundAsh from "./screens/RoundAsh";
-import Sycamore from "./screens/Sycamore";
-import About from "pages/AboutPage.jsx";
-import Blog from "pages/BlogPage.jsx";
-import Contact from "pages/ContactPage.jsx";
-import Home from "pages/HomePage.jsx";
-import "./styles/App.css";
+import Cart from "./components/products/Cart";
+import AboutPage from "./pages/AboutPage";
+import BlogPage from "./pages/BlogPage";
+import ContactPage from "./pages/ContactPage";
+import HomePage from "./pages/HomePage";
+import CartProvider from "./utils/CartContext";
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
   return (
-    // <CartProvider>
-    <ThemeProvider theme={theme}>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={About} />
-        <Route path="/blog" element={Blog} />
-        <Route path="/Contact" element={Contact} />
-        {/* <Route path="/cart" element={Cart} /> */}
-        <Route path="/leylandii" element={<Leylandii />} />
-        <Route path="/prunusSerrulata" element={<PrunusSerrulata />} />
-        <Route path="/fraxinusSmall" element={<FraxinusSmall />} />
-        <Route path="/sycamore" element={<Sycamore />} />
-        <Route path="/platanoides" element={<Platanoides />} />
-        <Route path="/douglas" element={<Douglas />} />
-        <Route path="/prunusTwin" element={<PrunusTwin />} />
-        <Route path="/roundAsh" element={<RoundAsh />} />
-        <Route path="/prunusAvium" element={<PrunusAvium />} />
-        <Route path="/success" element={<success />} />
-      </Routes>
-    </ThemeProvider>
-    // </CartProvider>
+    <CartProvider>
+      <>
+        <Navbar handleToggle={handleToggle} isOpen={isOpen} />
+        <Routes>
+          <Route path="/" element={<HomePage scrollToTop={scrollToTop} />} />
+          <Route
+            path="/about"
+            element={<AboutPage scrollToTop={scrollToTop} />}
+          />
+          <Route
+            path="/blog"
+            element={<BlogPage scrollToTop={scrollToTop} />}
+          />
+          <Route
+            path="/contact"
+            element={<ContactPage scrollToTop={scrollToTop} />}
+          />
+          <Route path="/cart" element={<Cart scrollToTop={scrollToTop} />} />
+          <Route
+            path="/success"
+            element={<Success scrollToTop={scrollToTop} />}
+          />
+        </Routes>
+        <Footer />
+      </>
+    </CartProvider>
   );
 }
 

@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const MainContainer = (props) => {
   MainContainer.propTypes = {
@@ -28,7 +28,7 @@ const Div = styled.div`
     justify-content: flex-start;
   }
   @media (max-width: 1040px) {
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     margin-bottom: 1rem;
   }
 `;

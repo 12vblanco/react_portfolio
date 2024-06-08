@@ -1,16 +1,14 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import Footer from "../components/Footer";
 import MainContainer from "../components/MainContainer";
 import StyledContainer from "../components/StyledContainer";
-import Product from "../products/Product";
-import { products } from "../products/Products";
-import PropTypes from "prop-types";
+import Product from "../components/products/Product.jsx";
+import { products } from "../components/products/Products";
 
 const HomePage = ({ handleShow }) => {
   HomePage.propTypes = {
     handleShow: PropTypes.func,
   };
-
   return (
     <MainContainer>
       <StyledContainer>
@@ -22,7 +20,6 @@ const HomePage = ({ handleShow }) => {
           );
         })}
       </StyledContainer>
-      <Footer />
     </MainContainer>
   );
 };
