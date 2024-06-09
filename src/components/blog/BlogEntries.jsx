@@ -1,6 +1,14 @@
 import img1 from "../../assets/blog-imgs/beauty-tree-rings.jpg";
 import img5 from "../../assets/blog-imgs/carving.jpg";
 import img10 from "../../assets/blog-imgs/colour.jpg";
+import img11 from "../../assets/blog-imgs/symbolism.jpg";
+import img12 from "../../assets/blog-imgs/reduction.jpg";
+import img13 from "../../assets/blog-imgs/nature.jpg";
+import img14 from "../../assets/blog-imgs/historical.jpg";
+import img15 from "../../assets/blog-imgs/scale.jpg";
+import img16 from "../../assets/blog-imgs/collaborative.jpg";
+import img17 from "../../assets/blog-imgs/science.jpg";
+import img18 from "../../assets/blog-imgs/dimensions.jpg";
 import img4 from "../../assets/blog-imgs/essence.jpg";
 import img2 from "../../assets/blog-imgs/linoleum.webp";
 import img9 from "../../assets/blog-imgs/mixed.jpg";
@@ -137,7 +145,7 @@ export const blogEntries = [
     date: "20/01/2024",
     subtitle:
       "Uncovering the Hidden Meanings and Cultural Significance of Trees",
-    image: "tree-symbolism-1.jpg",
+    image: img11,
     body: "Trees have long been imbued with symbolic meaning and cultural significance, serving as powerful metaphors and emblems across various artistic traditions. In this thought-provoking blog post, we embark on a fascinating journey through the symbolism of trees in art, from ancient mythologies to contemporary interpretations. Discover how artists have used trees to represent ideas of growth, resilience, connection, and spirituality, and gain a deeper understanding of the role trees play in our collective cultural consciousness. Through a careful examination of tree symbolism across time and cultures, this post will enrich your appreciation for the profound ways in which trees have shaped our artistic and spiritual landscapes.",
     tags: [
       "tree art",
@@ -151,7 +159,7 @@ export const blogEntries = [
     title: "The Art of Reduction Linocuts",
     date: "07/01/2024",
     subtitle: "Mastering the Technique of Multi-Layer Linoleum Printing",
-    image: "reduction-linocut-1.jpg",
+    image: img12,
     body: "Reduction linocuts, also known as multi-layer linocuts, are a challenging and rewarding technique in linoleum printing. In this comprehensive blog post, we dive deep into the process of creating reduction linocuts, from planning the design to carving and printing each layer with precision. Learn invaluable tips and tricks for successful registration, color selection, and troubleshooting, and discover the unique aesthetic possibilities of this powerful printmaking method. Whether you're a beginner looking to expand your skills or an experienced printmaker seeking to refine your technique, this post will provide you with the knowledge and inspiration to create stunning reduction linocuts that showcase the depth and complexity of the medium.",
     tags: [
       "linoleum printing",
@@ -166,7 +174,7 @@ export const blogEntries = [
     date: "25/12/2023",
     subtitle:
       "Connecting with Nature through the Meditative Act of Printmaking",
-    image: "nature-inspired-print-1.jpg",
+    image: img13,
     body: "Creating nature-inspired prints, such as tree ring prints or linoleum prints of botanical subjects, can be a deeply therapeutic and meditative experience. In this insightful blog post, we explore the mental health benefits of engaging with nature through printmaking, from reducing stress and anxiety to fostering a sense of connection and mindfulness. Learn how to incorporate nature-inspired printmaking into your self-care routine and discover the healing power of this creative practice. Through a combination of personal anecdotes, scientific research, and practical tips, this post will inspire you to embrace the therapeutic potential of printmaking and deepen your connection with the natural world.",
     tags: ["nature-inspired art", "printmaking", "art therapy", "mindfulness"],
   },
@@ -176,7 +184,7 @@ export const blogEntries = [
     date: "12/12/2023",
     subtitle:
       "Tracing the Legacy of Woodcuts from Medieval Times to the Present",
-    image: "woodcut-history-1.jpg",
+    image: img14,
     body: "Woodcuts, one of the oldest forms of relief printing, have a rich and fascinating history that spans centuries. In this informative blog post, we trace the legacy of woodcuts from their origins in medieval Europe to their continued relevance in contemporary printmaking. Discover the pivotal role woodcuts played in the dissemination of knowledge, the development of artistic styles, and the democratization of art, and gain a deeper appreciation for this enduring printmaking technique. Through a careful examination of key historical examples and the work of modern practitioners, this post will provide you with a comprehensive understanding of the significance of woodcuts in the broader context of printmaking history.",
     tags: [
       "woodcuts",
@@ -190,7 +198,7 @@ export const blogEntries = [
     title: "Experimenting with Scale in Tree-Inspired Prints",
     date: "28/11/2023",
     subtitle: "Exploring the Impact of Size in Tree Art and Printmaking",
-    image: "large-scale-tree-print-1.jpg",
+    image: img15,
     body: "The scale of a print can have a profound impact on its visual presence and emotional resonance, particularly when it comes to tree-inspired art. In this exploratory blog post, we delve into the role of scale in tree prints, from intimate, detailed studies to monumental, immersive installations. Discover how artists use scale to create different effects and engage viewers in unique ways, and learn valuable tips for experimenting with scale in your own tree-inspired printmaking. Whether you're drawn to the intricacy of small-scale works or the grandeur of large-scale prints, this post will inspire you to think critically about the relationship between size and impact in your artistic practice.",
     tags: [
       "tree art",
@@ -204,7 +212,7 @@ export const blogEntries = [
     title: "The Collaborative Process of Edition Printing",
     date: "15/11/2023",
     subtitle: "Navigating the Challenges and Rewards of Printing in Multiples",
-    image: "edition-printing-1.jpg",
+    image: img16,
     body: "Edition printing, the process of creating a set number of identical prints, is a common practice in printmaking that requires collaboration, communication, and attention to detail. In this informative blog post, we explore the challenges and rewards of edition printing, from working with master printers to ensuring consistency across the edition. Learn about the technical considerations, ethical guidelines, and creative possibilities of this collaborative printmaking process, and gain a deeper understanding of the value of teamwork in the art world. Whether you're an aspiring printmaker or a collector interested in the behind-the-scenes aspects of the medium, this post will provide you with valuable insights into the world of edition printing.",
     tags: [
       "edition printing",
@@ -219,7 +227,7 @@ export const blogEntries = [
     date: "02/11/2023",
     subtitle:
       "Exploring the Scientific and Aesthetic Dimensions of Dendrochronology Art",
-    image: "tree-ring-science-art-1.jpg",
+    image: img17,
     body: "Tree ring prints, or dendrochronology art, represent a fascinating intersection of science and art, combining the analytical study of tree growth patterns with the creative interpretation of nature's beauty. In this interdisciplinary blog post, we delve into the scientific and aesthetic dimensions of tree ring prints, exploring how artists",
     tags: [
       "tree ring prints",
@@ -233,7 +241,7 @@ export const blogEntries = [
     title: "The Role of Texture in Linoleum Prints",
     date: "2023-10-20",
     subtitle: "Harnessing the Tactile Qualities of Linoleum in Relief Printing",
-    image: "textured-linoleum-print-1.jpg",
+    image: img18,
     body: "Texture is a key element in linoleum prints, adding depth, interest, and tactile appeal to the final image. In this blog post, we explore the role of texture in linoleum printing, from the natural grain of the linoleum block to the marks made by various carving tools. Learn techniques for creating and controlling texture in your linoleum prints, and discover how artists use texture to enhance the visual and emotional impact of their work.",
     tags: [
       "linoleum printing",
@@ -248,7 +256,7 @@ export const blogEntries = [
     date: "2023-10-07",
     subtitle:
       "Examining the Timeless Fascination with Trees in Art and Culture",
-    image: "tree-art-appeal-1.jpg",
+    image: img19,
     body: "Trees have been a source of inspiration and fascination for artists and audiences throughout history, from ancient myths and folklore to contemporary environmental art. In this blog post, we examine the enduring appeal of tree art, exploring the reasons why trees continue to captivate our imaginations and evoke deep emotional responses. Discover the universal themes and cultural significance of tree art, and reflect on the role trees play in our lives and creative expressions.",
     tags: [
       "tree art",
@@ -263,7 +271,7 @@ export const blogEntries = [
     date: "2024-03-05",
     subtitle:
       "Celebrating the Magnificence of Trees through Artistic Expression",
-    image: "tree-art-10.jpg",
+    image: img20,
     body: "Trees have always been a source of inspiration for artists around the world. In this blog post, we celebrate the enchanting world of tree art, showcasing various artists and their unique interpretations of these majestic beings. From paintings and sculptures to installations and photographs, discover how artists capture the essence and beauty of trees in their work.",
     tags: ["tree art", "nature-inspired art", "artistic expression"],
   },

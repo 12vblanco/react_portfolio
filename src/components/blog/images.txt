@@ -7,3 +7,14 @@
 7:self
 8 studios: https://www.flickr.com/photos/malicy/31391136930
 9 mixed: https://www.deviantart.com/madcats/art/03-Path-984971845
+10 colour: https://www.flickr.com/photos/libbyrosof/2720239394 
+11 symbolism: https://www.flickr.com/photos/vintage_illustration/50954697668
+12reduction: https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/%E5%86%A8%E5%B6%BD%E4%B8%89%E5%8D%81%E5%85%AD%E6%99%AF_%E5%87%B1%E9%A2%A8%E5%BF%AB%E6%99%B4-South_Wind%2C_Clear_Sky_%28Gaif%C5%AB_kaisei%29%2C_also_known_as_Red_Fuji%2C_from_the_series_Thirty-six_Views_of_Mount_Fuji_%28Fugaku_sanj%C5%ABrokkei%29_MET_DP141053.jpg/1600px-thumbnail.jpg?20170511200220 
+23 nature: https://live.staticflickr.com/2949/33705677562_11b4bd6622_b.jpg
+14 historical: https://live.staticflickr.com/8448/7768429780_ea59bca1ff_b.jpg
+15 scale: https://live.staticflickr.com/4048/4543873173_1cde1eb14f_z.jpg
+16 collaborative: https://live.staticflickr.com/7085/7093047787_46767a2db8_b.jpg
+17 science: https://live.staticflickr.com/7234/7322484874_afbfced363_b.jpg
+18 dimensions: https://www.rawpixel.com/image/2687348/free-illustration-image-pattern-sunflower-black-and-white
+19 appeal: https://picryl.com/media/landscape-with-three-gabled-cottages-beside-a-road-57eef0
+20 illustration: https://www.flickr.com/photos/vintage_illustration/39820333143
