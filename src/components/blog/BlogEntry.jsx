@@ -1,22 +1,29 @@
 import PropTypes from "prop-types";
+import { Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 
 const BlogEntry = ({ entry }) => {
   return (
-    <BlogContainer>
-      <BlogImage src={entry.image} alt={entry.title} />
-      <BlogContent>
-        <BlogTitle>{entry.title}</BlogTitle>
-        <BlogSubtitle>{entry.subtitle}</BlogSubtitle>
-        <BlogDate>{entry.date}</BlogDate>
-        <BlogBody>{entry.body}</BlogBody>
-        <BlogTags>
-          {entry.tags.map((tag, i) => (
-            <BlogTag key={i}>{tag}</BlogTag>
-          ))}
-        </BlogTags>
-      </BlogContent>
-    </BlogContainer>
+    <Container>
+      <Row className="my-4">
+        <Col md={4}>
+          <BlogImage src={entry.image} alt={entry.title} />
+        </Col>
+        <Col md={8}>
+          <BlogContent>
+            <BlogTitle>{entry.title}</BlogTitle>
+            <BlogSubtitle>{entry.subtitle}</BlogSubtitle>
+            <BlogDate>{entry.date}</BlogDate>
+            <BlogBody>{entry.body}</BlogBody>
+            <BlogTags>
+              {entry.tags.map((tag, i) => (
+                <BlogTag key={i}>{tag}</BlogTag>
+              ))}
+            </BlogTags>
+          </BlogContent>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
@@ -24,18 +31,18 @@ BlogEntry.propTypes = {
   entry: PropTypes.object.isRequired,
 };
 
-const BlogContainer = styled.div`
-  display: flex;
-  max-width: 1240px;
-  padding: 2rem 3rem;
-  margin: 0 auto;
-`;
-
 const BlogImage = styled.img`
-  width: 280px;
-  height: 280px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
-  margin-right: 26px;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    width: 280px;
+    height: 280px;
+    margin-right: 26px;
+    margin-bottom: 0;
+  }
 `;
 
 const BlogContent = styled.div`

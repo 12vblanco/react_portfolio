@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled, { ThemeProvider } from "styled-components";
 import logo from "../../assets/images/logo.png";
 import Modal from "../products/Modal";
-// import BurgerMenu from "./BurgerMenu";
+import BurgerMenu from "./BurgerMenu";
 import NavMenu from "./NavMenu";
 
 const Navbar = (theme) => {
@@ -41,7 +41,7 @@ const Navbar = (theme) => {
             </NavUl>
           </NavDiv>
         ) : (
-          <NavMenu handleShow={handleShow} handleClose={handleClose} />
+          <BurgerMenu handleShow={handleShow} handleClose={handleClose} />
         )}
       </StyledDiv>
       {show && <Modal handleClose={handleClose} />}
@@ -63,28 +63,27 @@ const StyledDiv = styled.nav`
   z-index: 123;
   background: var(--color-bg);
   @media (max-width: 480px) {
-    flex-direction: column;
     margin-left: 0;
-    padding-top: 7rem;
-    padding-bottom: 5rem;
-    height: 22rem;
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+    height: auto;
   }
 `;
 const LogoDiv = styled.div`
   display: flex;
-  margin-left: 4.4rem;
-  height: 9.2rem;
+  margin-left: 2.75rem;
+  height: 5.75rem;
   width: auto;
   align-items: center;
   justify-content: space-around;
   @media (max-width: 480px) {
-    height: 9.2rem;
+    height: 50px;
     margin: 0;
   }
 `;
 const NavDiv = styled.div`
   display: flex;
-  height: 9.2rem;
+  height: 92px;
   width: auto;
   align-items: center;
   justify-content: space-around;
@@ -100,12 +99,22 @@ const NavUl = styled.ul`
 const Img = styled.img`
   width: 70px;
   height: auto;
+  @media (max-width: 480px) {
+    width: 40px;
+  }
 `;
 
 const Name = styled.h1`
   margin-left: 1rem;
   color: var(--color-secondary);
   text-transform: uppercase;
+  margin-bottom: 0;
+
+  @media (max-width: 480px) {
+    margin-left: 0.4rem;
+    font-size: 38px;
+    margin-bottom: 0;
+  }
 `;
 
 export default Navbar;
