@@ -5,38 +5,33 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 import styled from "styled-components";
 import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
-import Checkout from "./Checkout";
+import Checkout from "./Checkout"; // Import Checkout component
 
 const Modal = ({ handleClose }) => {
-  Modal.propTypes = {
-    handleClose: PropTypes.func,
-  };
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    alert("you are being redirected to stripe");
+    alert("Redirecting to checkout...");
+    // Example fetch logic to initiate checkout
     try {
-      const response = await fetch("api/stripe", {
+      const response = await fetch("/api/stripe", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ items: cart.items }),
       });
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.json();
-
-      if (data.url) {
-        window.location.assign(data.url);
-      } else {
-        throw new Error("Invalid response from server");
+      const session = await response.json();
+      const stripe = await stripePromise;
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
+      if (result.error) {
+        alert(result.error.message);
       }
     } catch (error) {
-      console.error("Error during checkout:", error);
+      console.error("Error initiating checkout:", error);
     }
   };
 
@@ -83,7 +78,8 @@ const Modal = ({ handleClose }) => {
                 </span>
               </p>
               <div onClick={checkout}>
-                <Checkout cart={cart} />
+                {/* Use Checkout component for checkout functionality */}
+                <Checkout />
               </div>
             </RowDiv>
           </>
@@ -114,6 +110,11 @@ const Modal = ({ handleClose }) => {
       </>
     </ModalWrapper>
   );
+};
+
+// PropTypes declaration outside the component
+Modal.propTypes = {
+  handleClose: PropTypes.func.isRequired,
 };
 
 const ModalWrapper = styled.div`
