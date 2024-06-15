@@ -5,10 +5,16 @@ import { MdOutlineAddShoppingCart } from "react-icons/md";
 import styled from "styled-components";
 import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
-import Checkout from "./Checkout"; // Import Checkout component
+import Checkout from "./Checkout";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Modal = ({ handleClose }) => {
   const cart = useContext(CartContext);
+
+  // Load Stripe asynchronously
+  const stripePromise = loadStripe(
+    "pk_test_51HqgwdGKpDMhyEuL11A63hDc42CNdjZbMH93xDPIumVyYlgGe5byVF9rXhgW0rs64r0uaDjQUqlwOUDXrbTZy9nx00cyCIwiBm"
+  );
 
   const checkout = async () => {
     alert("Redirecting to checkout...");
