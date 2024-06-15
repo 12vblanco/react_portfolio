@@ -75,6 +75,7 @@ const Modal = ({ handleClose }) => {
                     src={stripe_img}
                     style={{
                       width: "60px",
+                      height: "auto",
                       marginTop: "-18px",
                       borderRadius: "12px",
                     }}

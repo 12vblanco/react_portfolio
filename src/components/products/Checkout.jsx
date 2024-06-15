@@ -44,19 +44,19 @@ const Checkout = ({ cartItems }) => {
 
   return (
     <div>
-      {clientSecretSettings.loading ? (
+      {/* {clientSecretSettings.loading ? (
         <h1>Loading ...</h1>
-      ) : (
-        <Elements
-          stripe={stripePromise}
-          options={{
-            clientSecret: clientSecretSettings.clientSecret,
-            appearance: { theme: "stripe" },
-          }}
-        >
-          <CheckoutForm cartItems={cartItems} />
-        </Elements>
-      )}
+      ) : ( */}
+      <Elements
+        stripe={stripePromise}
+        options={{
+          clientSecret: clientSecretSettings.clientSecret,
+          appearance: { theme: "stripe" },
+        }}
+      >
+        <CheckoutForm cartItems={cartItems} />
+      </Elements>
+      {/* )} */}
     </div>
   );
 };
