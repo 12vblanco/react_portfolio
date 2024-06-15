@@ -7,36 +7,56 @@ import { CartContext } from "../../utils/CartContext";
 import CheckoutForm from "./CheckoutForm";
 
 const initStripe = async () => {
-  const res = await axios.get("/api/publishable-key");
-  const publishableKey = await res.data.publishable_key;
-
-  return loadStripe(publishableKey);
+  try {
+    const res = await axios.get("/api/publishable-key");
+    const publishableKey = res.data.publishable_key;
+    return loadStripe(publishableKey);
+  } catch (error) {
+    console.error("Error loading Stripe publishable key:", error);
+    return null;
+  }
 };
+
+const stripePromise = initStripe();
 
 const Checkout = ({ cartItems }) => {
   Checkout.propTypes = {
-    cartItems: PropTypes.func,
+    cartItems: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        price: PropTypes.number,
+      })
+    ).isRequired,
   };
-  const cart = useContext(CartContext);
 
-  const stripePromise = initStripe();
+  const cart = useContext(CartContext);
   const [clientSecretSettings, setClientSecretSettings] = useState({
     clientSecret: "",
     loading: true,
   });
 
   useEffect(() => {
-    async function createPaymentIntent() {
-      const amount = cart.getTotalCost() * 100;
+    const createPaymentIntent = async () => {
+      try {
+        const amount = cart.getTotalCost() * 100;
 
-      const response = await axios.post("/api/create-payment-intent", {
-        amount: amount,
-      });
-      setClientSecretSettings({
-        clientSecret: response.data.client_secret,
-        loading: false,
-      });
-    }
+        const response = await axios.post("/api/create-payment-intent", {
+          amount: amount,
+        });
+        setClientSecretSettings({
+          clientSecret: response.data.client_secret,
+          loading: false,
+        });
+      } catch (error) {
+        console.error("Error creating payment intent:", error);
+        setClientSecretSettings({
+          clientSecret: "",
+          loading: false,
+        });
+      }
+    };
+
     createPaymentIntent();
   }, [cart]);
 
@@ -52,8 +72,7 @@ const Checkout = ({ cartItems }) => {
             appearance: { theme: "stripe" },
           }}
         >
-          {" "}
-          <CheckoutForm cartItems={cartItems} />{" "}
+          <CheckoutForm cartItems={cartItems} />
         </Elements>
       )}
     </div>
@@ -61,3 +80,4 @@ const Checkout = ({ cartItems }) => {
 };
 
 export default Checkout;
+``;
