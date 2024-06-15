@@ -8,9 +8,6 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const CheckoutForm = ({ cartItems }) => {
-  CheckoutForm.propTypes = {
-    cartItems: PropTypes.func,
-  };
   const stripe = useStripe();
   const elements = useElements();
   const [errorMessage, setErrorMessage] = useState(null);
@@ -19,7 +16,7 @@ const CheckoutForm = ({ cartItems }) => {
   const itemIds = cartItems.map((item) => item.id);
   const itemIdsString = itemIds.join(",");
   const isNameValid = (name) => {
-    const pattern = /^[a-zA-Z\s\-]+$/;
+    const pattern = /^[a-zA-Z\s-]+$/;
     return pattern.test(name);
   };
 
@@ -50,7 +47,7 @@ const CheckoutForm = ({ cartItems }) => {
     event.preventDefault();
 
     if (!isNameValid(costumerName) || !isEmailValid(email)) {
-      return; // Don't proceed with submission if validation fails
+      return;
     }
 
     const { error } = await stripe.confirmPayment({
@@ -69,7 +66,6 @@ const CheckoutForm = ({ cartItems }) => {
 
     if (error) {
       setErrorMessage(error.message);
-    } else {
     }
   };
 
@@ -102,6 +98,9 @@ const CheckoutForm = ({ cartItems }) => {
       {errorMessage && <div>{errorMessage}</div>}
     </StyledForm>
   );
+};
+CheckoutForm.propTypes = {
+  cartItems: PropTypes.func,
 };
 
 const StyledForm = styled.form`
