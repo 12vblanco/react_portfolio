@@ -20,6 +20,7 @@ const Form = () => {
       })
       .catch((error) => alert(error));
   };
+
   return (
     <MainContainer>
       <FromContainer>
@@ -29,9 +30,11 @@ const Form = () => {
           name="contactForm"
           method="POST"
           data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          data-netlify-recaptcha="true"
           onSubmit={onSubmitHandler}
         >
-          <input type="hidden" name="contactForm" value="contactForm" />
+          <input type="hidden" name="form-name" value="contactForm" />
 
           <Label htmlFor="name">
             Your name
