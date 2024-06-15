@@ -75,7 +75,7 @@ const Modal = ({ handleClose }) => {
                 </span>
               </p>
               <div onClick={checkout}>
-                <Checkout cart={cart} />
+                <Checkout cartItems={cart.items} />
               </div>
             </RowDiv>
           </>

@@ -1,53 +1,63 @@
-import { loadStripe } from "@stripe/stripe-js/pure";
-import styled from "styled-components";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import PropTypes from "prop-types";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "./CartContext.jsx";
+import CheckoutForm from "./CheckoutForm.jsx";
 
-const stripe = loadStripe(
-  "pk_test_51HqgwdGKpDMhyEuL11A63hDc42CNdjZbMH93xDPIumVyYlgGe5byVF9rXhgW0rs64r0uaDjQUqlwOUDXrbTZy9nx00cyCIwiBm"
-);
+const initStripe = async () => {
+  const res = await axios.get("/api/publishable-key");
+  const publishableKey = await res.data.publishable_key;
 
-const callApi = (e) => {
-  e.preventDefault();
-  fetch("/api/stripe", {
-    method: "POST",
-  })
-    .then((response) => {
-      console.log(response);
-
-      return response.json();
-    })
-    .then((session) => {
-      console.log(session);
-      console.log(stripe);
-      return stripe.redirectToCheckout({ sessionId: session.id });
-    })
-    .then((result) => {
-      if (result.err) {
-        return alert(result.err.message);
-      }
-    })
-    .catch((err) => {
-      return console.error("Error:", err);
-    });
+  return loadStripe(publishableKey);
 };
 
-const Checkout = () => {
+const Checkout = ({ cartItems }) => {
+  Checkout.propTypes = {
+    cartItems: PropTypes.func,
+  };
+  const cart = useContext(CartContext);
+
+  const stripePromise = initStripe();
+  const [clientSecretSettings, setClientSecretSettings] = useState({
+    clientSecret: "",
+    loading: true,
+  });
+
+  useEffect(() => {
+    async function createPaymentIntent() {
+      const amount = cart.getTotalCost() * 100;
+
+      const response = await axios.post("/api/create-payment-intent", {
+        amount: amount,
+      });
+      setClientSecretSettings({
+        clientSecret: response.data.client_secret,
+        loading: false,
+      });
+    }
+    createPaymentIntent();
+  }, [cart]);
+
   return (
-    <form onSubmit={callApi}>
-      <ChkButton>Checkout</ChkButton>
-    </form>
+    <div>
+      {clientSecretSettings.loading ? (
+        <h1>Loading ...</h1>
+      ) : (
+        <Elements
+          stripe={stripePromise}
+          options={{
+            clientSecret: clientSecretSettings.clientSecret,
+            appearance: { theme: "stripe" },
+          }}
+        >
+          {" "}
+          <CheckoutForm cartItems={cartItems} />{" "}
+        </Elements>
+      )}
+    </div>
   );
 };
-
-const ChkButton = styled.button`
-  background-color: #fff;
-  color: var(--color-secondary);
-  padding: 10px 16px;
-  border-radius: 1.2rem;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 110;
-  border: 0.2rem solid var(--color-secondary);
-`;
 
 export default Checkout;
