@@ -3,8 +3,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
-import { CartContext } from "./CartContext.jsx";
-import CheckoutForm from "./CheckoutForm.jsx";
+import { CartContext } from "../../utils/CartContext";
+import CheckoutForm from "./CheckoutForm";
 
 const initStripe = async () => {
   const res = await axios.get("/api/publishable-key");
