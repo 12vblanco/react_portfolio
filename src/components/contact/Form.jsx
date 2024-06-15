@@ -1,21 +1,37 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MainContainer from "../../components/MainContainer";
 
 const Form = () => {
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
+  let navigate = useNavigate();
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
+    let myForm = document.getElementById("contactForm");
+    let formData = new FormData(myForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => {
+        navigate("/Success");
+      })
+      .catch((error) => alert(error));
   };
   return (
     <MainContainer>
       <FromContainer>
         <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
-          name="BasketForm"
+          id="contactForm"
+          name="contactForm"
           method="POST"
           data-netlify="true"
           onSubmit={onSubmitHandler}
         >
-          <input type="hidden" name="BasketForm" value="BasketForm" />
+          <input type="hidden" name="contactForm" value="contactForm" />
 
           <Label htmlFor="name">
             Your name
@@ -65,7 +81,6 @@ const Form = () => {
           <InputButton type="submit" value="Send a message" />
         </StyledForm>
       </FromContainer>
-      {/* <Footer /> */}
     </MainContainer>
   );
 };
