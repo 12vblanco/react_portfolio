@@ -1,12 +1,24 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import logo from "../../assets/images/logo.png";
+import { CartContext } from "../../utils/CartContext";
 import Modal from "../products/Modal";
 import BurgerMenu from "./BurgerMenu";
 import NavMenu from "./NavMenu";
 
-const Navbar = (theme) => {
+const Navbar = () => {
+  const cart = useContext(CartContext);
+  const productsCount = cart.items.reduce(
+    (sum, product) => sum + product.quantity,
+    0
+  );
+  useEffect(() => {
+    if (productsCount > 0) {
+      handleShow();
+    }
+  }, [productsCount]);
+
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -21,7 +33,7 @@ const Navbar = (theme) => {
   });
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <StyledDiv>
         <Link to="/">
           <LogoDiv>
@@ -45,7 +57,7 @@ const Navbar = (theme) => {
         )}
       </StyledDiv>
       {show && <Modal handleClose={handleClose} />}
-    </ThemeProvider>
+    </>
   );
 };
 
@@ -102,6 +114,9 @@ const Img = styled.img`
   @media (max-width: 480px) {
     width: 40px;
   }
+  @media (max-width: 340px) {
+    width: 34px;
+  }
 `;
 
 const Name = styled.h1`
@@ -113,6 +128,11 @@ const Name = styled.h1`
   @media (max-width: 480px) {
     margin-left: 0.4rem;
     font-size: 38px;
+    margin-bottom: 0;
+  }
+  @media (max-width: 390px) {
+    margin-left: 0.2rem;
+    font-size: 28px;
     margin-bottom: 0;
   }
 `;

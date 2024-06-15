@@ -16,7 +16,7 @@ const CartProduct = (props) => {
 
   return (
     <>
-      <RowDiv style={{ marginTop: "28px" }}>
+      <RowDiv style={{ marginTop: "0.rem" }}>
         <Img alt="A print of the rings of a tree" src={productData.img} />
         <ColumnDiv>
           <Name>{productData.name}</Name>
@@ -33,18 +33,19 @@ const CartProduct = (props) => {
               </Qty>
             )}
           </QtyDiv>
-          <Price>Price: £ {(quantity * productData.price).toFixed(2)}</Price>
+          <Price>
+            Price: £ {(quantity * productData.price).toFixed(2)}
+            <>
+              <RemoveButton onClick={() => cart.deleteFromCart(id)}>
+                Delete
+              </RemoveButton>
+            </>
+          </Price>
 
-          <RowDiv>
-            <Minus onClick={() => cart.removeOneFromCart(id)}>-</Minus>
-            <RemoveButton onClick={() => cart.deleteFromCart(id)}>
-              Remove
-            </RemoveButton>
-            <Plus onClick={() => cart.addOneToCart(id)}>+</Plus>
-          </RowDiv>
+          <RowDiv></RowDiv>
         </ColumnDiv>
       </RowDiv>
-      <hr style={{ marginTop: "1.4rem" }}></hr>
+      <hr style={{ marginTop: "1rem" }}></hr>
     </>
   );
 };
@@ -52,43 +53,42 @@ const CartProduct = (props) => {
 const RemoveButton = styled.button`
   color: var(--color-accent);
   background: var(--color-bg);
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
+  padding: 0.125rem 0.25rem;
+  margin-left: 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
   z-index: 110;
   border: 2px solid var(--color-accent);
-  margin: 1rem 0 -0.4rem 0;
 `;
 
 const Name = styled.p`
   letter-spacing: -0.03rem;
-  font-size: 16px;
+  font-size: 0.9375rem;
   font-style: italic;
-  font-weight: 600;
+  font-weight: 500;
 `;
 const Qty = styled.h3`
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 400;
 
   span {
     color: var(--color-secondary);
-    font-size: 16px;
+    font-size: 0.9375rem;
   }
 `;
 const QtyDiv = styled.div``;
 
 const Price = styled.h3`
   color: var(--color-secondary);
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 0.9375rem;
+  font-weight: 400;
 `;
 
 const Img = styled.img`
-  max-width: 120px;
-  border-radius: 8px;
-  padding: 4px;
+  max-width: 60px;
+  border-radius: 6px;
 `;
 
 const RowDiv = styled.div`
@@ -99,6 +99,7 @@ const RowDiv = styled.div`
   align-items: center;
   justify-content: flex-start;
   cursor: pointer;
+  margin-top: 0.75rem;
 `;
 
 const ColumnDiv = styled.div`
@@ -107,16 +108,6 @@ const ColumnDiv = styled.div`
   align-items: flex-start;
   justify-content: center;
   padding: 0 1rem;
-`;
-
-const Plus = styled.span`
-  font-size: 38px;
-  margin: -0.4rem 1rem -2rem 0.8rem;
-`;
-const Minus = styled.span`
-  font-size: 38px;
-  color: var(--color-secondary);
-  margin: -0.4rem 1rem -2rem 0px;
 `;
 
 export default CartProduct;

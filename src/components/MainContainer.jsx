@@ -19,7 +19,7 @@ const Div = styled.div`
   max-width: 1240px;
   margin: 0 auto;
   height: auto;
-  padding-top: 5%;
+  padding-top: 1%;
   font-size: 22px;
   margin-top: 110px;
   margin-bottom: 60px;
@@ -28,7 +28,6 @@ const Div = styled.div`
     justify-content: flex-start;
   }
   @media (max-width: 1040px) {
-    /* margin-top: 1rem; */
     margin-bottom: 1rem;
   }
 `;

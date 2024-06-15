@@ -32,13 +32,13 @@ const ShoppingDiv = styled.div`
 
 const ShoppingCart = styled(MdOutlineShoppingCart)`
   font-size: 46px;
-  margin-top: 16px;
+  margin-top: 52px;
   width: 56px;
-  margin-left: 3.6rem;
+  margin-left: 3rem;
   position: relative;
   @media (max-width: 646px) {
     font-size: 44px;
-    margin-top: 6px;
+    /* margin-top: 6px; */
   }
 `;
 
@@ -54,8 +54,8 @@ const Counter = styled.div`
   background: var(--color-accent);
   padding: 1px;
   position: relative;
-  top: 4px;
-  right: 14px;
+  top: 40px;
+  right: 16px;
 `;
 
 export default Cart;

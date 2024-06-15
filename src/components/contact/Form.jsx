@@ -8,7 +8,7 @@ const Form = () => {
   return (
     <MainContainer>
       <FromContainer>
-        <H1>Please send us any requests or queries using this form:</H1>
+        <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
           name="BasketForm"
           method="POST"
@@ -54,7 +54,7 @@ const Form = () => {
                   Terms & Conditions
                 </a>
                 <span
-                  style={{ color: "var(--color-accent)", fontSize: "26px" }}
+                  style={{ color: "var(--color-accent)", fontSize: "16px" }}
                 >
                   *
                 </span>
@@ -65,6 +65,7 @@ const Form = () => {
           <InputButton type="submit" value="Send a message" />
         </StyledForm>
       </FromContainer>
+      {/* <Footer /> */}
     </MainContainer>
   );
 };
@@ -76,12 +77,22 @@ const FromContainer = styled.div`
   max-width: 700px;
   padding: 0.6rem 0.75rem 2rem 0.75rem;
   border-radius: 0.8rem;
+  margin-top: -90px;
+  @media (max-width: 440px) {
+    max-width: 100%;
+    padding: 10px 1.8rem;
+    margin-top: -100px;
+  }
 `;
 
-const H1 = styled.h1`
-  font-size: 24px;
+const H2 = styled.h2`
   margin: 1.6rem 0;
   font-weight: 300;
+  @media (max-width: 440px) {
+    text-align: center;
+    font-size: 18px;
+    margin: 1rem 0;
+  }
 `;
 
 const StyledForm = styled.form`
@@ -95,29 +106,39 @@ const Input = styled.input`
   padding: 7px;
   height: 32px;
   border-radius: 6px;
+  outline: 0.5px dotted black;
   font-size: 22px;
   box-shadow: 0.1875rem 0.3125rem 1.125rem rgba(3, 3, 3, 0.2);
+  @media (max-width: 440px) {
+    font-size: 16px;
+  }
 `;
 const TextArea = styled.textarea`
   width: 100%;
   padding: 0.5rem;
   border-radius: 6px;
-  outline: 1px solid black;
+  outline: 0.5px dotted black;
   font-size: 22px;
   height: 140px;
   box-shadow: 0.1875rem 0.3125rem 1.125rem rgba(3, 3, 3, 0.2);
+  @media (max-width: 440px) {
+    font-size: 16px;
+  }
 `;
 
 const Label = styled.label`
-  font-size: 24px;
+  font-size: 18px;
   width: 100%;
+  @media (max-width: 440px) {
+    font-size: 16px;
+  }
 `;
 
 const Checkbox = styled.input`
-  height: 22px;
-  width: 22px;
-  outline: 1px solid black;
-  margin-top: 12px;
+  height: 20px;
+  width: 20px;
+  outline: 0.1px dotted black;
+  margin-top: 13px;
   accent-color: var(--color-secondary);
   &:checked {
     background-color: var(--color-primary);
@@ -128,23 +149,27 @@ const Checkbox = styled.input`
 const CheckText = styled.p`
   text-align: left;
   font-size: 14px;
-  line-height: 0.6;
+  line-height: 1.2;
   width: 100%;
   padding-left: 1rem;
   padding-top: 1rem;
   margin-top: -5px;
+  @media (max-width: 440px) {
+    font-size: 11px;
+    padding-left: 0.8em;
+  }
 `;
 
 const InputButton = styled.input`
-  border-radius: 6px;
+  border-radius: 4px;
   outline: 1px solid black;
   font-weight: 500;
   margin-top: 20px;
-  font-size: 22px;
-  padding: 1rem 0.8rem;
+  font-size: 18px;
+  padding: 0.4rem 0.6rem;
   position: relative;
   left: 50%;
-  width: 260px;
+  width: 180px;
   transform: translate(-50%);
   background: var(--color-primary);
   cursor: pointer;
@@ -155,6 +180,9 @@ const InputButton = styled.input`
   }
   &:active {
     box-shadow: 0.1875rem 0.3125rem 1.125rem rgba(3, 3, 3, 0.5);
+  }
+  @media (max-width: 440px) {
+    margin-top: 50px;
   }
 `;
 

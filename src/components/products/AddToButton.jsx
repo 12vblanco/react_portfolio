@@ -36,9 +36,9 @@ AddToButton.propTypes = {
 };
 
 const AddToWrapper = styled.div`
-  width: 80px;
+  width: 72px;
   height: 80px;
-  margin: 3px;
+  margin: 6px 2px;
   cursor: pointer;
   z-index: 4;
   border-left: solid 0.1px rgba(51, 51, 51, 0.4);
@@ -68,7 +68,7 @@ const RowDiv = styled.div`
 `;
 
 const Qty = styled.span`
-  font-size: 22px;
+  font-size: 20px;
   margin-top: -0.2rem;
   border: 2px solid var(--color-secondary);
   border-radius: 50%;
@@ -77,13 +77,13 @@ const Qty = styled.span`
   text-align: center;
 `;
 const Plus = styled.span`
-  font-size: 40px;
-  margin: -14px 10px -12px 6px;
+  font-size: 38px;
+  margin: -6px 10px -14px 6px;
 `;
 const Minus = styled.span`
-  font-size: 40px;
+  font-size: 38px;
   color: var(--color-accent);
-  margin: -14px 8px -12px 12px;
+  margin: -6px 8px -14px 12px;
 `;
 
 export default AddToButton;

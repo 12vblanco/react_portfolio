@@ -3,10 +3,11 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Cart from "../products/Cart";
 
-const NavMenu = ({ handleShow, closeMenu }) => {
+const NavMenu = ({ handleShow, closeMenu, click }) => {
   NavMenu.propTypes = {
     handleShow: PropTypes.func,
     closeMenu: PropTypes.func,
+    click: PropTypes.func,
   };
   return (
     <>
@@ -30,9 +31,19 @@ const NavMenu = ({ handleShow, closeMenu }) => {
           Blog
         </NavLink>
       </StyledLink>
-      <StyledLink style={{ marginLeft: "-14px", cursor: "pointer" }}>
-        <Cart handleShow={handleShow} onClick={handleShow} />
-      </StyledLink>
+      {click ? (
+        <StyledLink
+          style={{ marginLeft: "-8px", marginTop: "-46px", cursor: "pointer" }}
+        >
+          <Cart handleShow={handleShow} onClick={handleShow} />
+        </StyledLink>
+      ) : (
+        <StyledLink
+          style={{ marginLeft: "-22px", marginTop: "-14px", cursor: "pointer" }}
+        >
+          <Cart handleShow={handleShow} onClick={handleShow} />
+        </StyledLink>
+      )}
     </>
   );
 };

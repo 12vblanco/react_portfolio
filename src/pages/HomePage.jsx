@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import MainContainer from "../components/MainContainer";
 import StyledContainer from "../components/StyledContainer";
-import Product from "../components/products/Product.jsx";
+import Product from "../components/products/Product";
 import { products } from "../components/products/Products";
 
 const HomePage = ({ handleShow }) => {
@@ -10,8 +10,8 @@ const HomePage = ({ handleShow }) => {
     handleShow: PropTypes.func,
   };
   return (
-    <MainContainer>
-      <StyledContainer>
+    <MainContainer style={{ marginBottom: "2rem" }}>
+      <StyledContainer style={{ marginBottom: "2rem" }}>
         {products.map((product, i) => {
           return (
             <ProductCard key={i}>
@@ -26,6 +26,9 @@ const HomePage = ({ handleShow }) => {
 
 const ProductCard = styled.div`
   margin: 6px 10px;
+  @media (max-width: 340px) {
+    margin: 6px 0;
+  }
 `;
 
 export default HomePage;

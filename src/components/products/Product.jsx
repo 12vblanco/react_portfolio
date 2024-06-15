@@ -40,7 +40,7 @@ const Product = ({ handleShow, product }) => {
         <RowDiv style={{ paddingTop: "40px" }}>
           <ColumnDiv>
             <Name>{product.name}</Name>
-            <RowDiv style={{ width: "254px" }}>
+            <RowDiv>
               <Format>{product.format}</Format>
               <Price>£{product.price}</Price>
             </RowDiv>
@@ -67,6 +67,10 @@ const ProductWrapper = styled.div`
   &:hover {
     transform: scale(1);
     box-shadow: 5px 2rem 30px rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 340px) {
+    width: 280px;
+    height: 450px;
   }
 `;
 
@@ -96,12 +100,18 @@ const Name = styled.h2`
   font-style: italic;
   font-weight: 500;
   z-index: 123;
+  @media (max-width: 340px) {
+    font-size: 18px;
+  }
 `;
 const Format = styled.h4`
   font-size: 16px;
   font-weight: 100;
   margin-top: -6px;
   z-index: 123;
+  @media (max-width: 340px) {
+    font-size: 13px;
+  }
 `;
 
 const Price = styled.span`
@@ -111,6 +121,9 @@ const Price = styled.span`
   font-weight: 500;
   top: -3px;
   margin-left: 4px;
+  @media (max-width: 340px) {
+    font-size: 16px;
+  }
 `;
 
 const Info = styled.div`
@@ -119,7 +132,8 @@ const Info = styled.div`
   margin: 16px;
   z-index: 234;
   cursor: pointer;
-  &:hover {
+  @media (max-width: 340px) {
+    font-size: 26px;
   }
 `;
 
@@ -139,6 +153,13 @@ const Description = styled.div`
   color: var(--color-secondary);
   transition: all 1s;
   border-radius: 4px 4px 0px 0px;
+  @media (max-width: 340px) {
+    font-size: 15px;
+    width: 260px;
+    height: 430px;
+    min-width: 280px;
+    min-height: 450px;
+  }
 `;
 
 export default Product;

@@ -23,16 +23,19 @@ const FooterDiv = styled.div`
   bottom: 0;
   width: 100%;
   background: var(--color-bg);
-  color: white;
+  color: var(--color-secondary);
   text-align: center;
   z-index: 234;
 `;
 const Div = styled.div`
   padding: 0.8rem;
   background: var(--color-bg);
-  font-size: 0.8rem;
-  color: var(--color-secondary);
+  font-size: 12px;
   font-weight: 500;
+  @media (max-width: 340px) {
+    font-size: 10px;
+    padding: 0.4rem;
+  }
 `;
 
 export default Footer;
