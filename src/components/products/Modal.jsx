@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
-import styled from "styled-components";
 import { CartContext } from "../../utils/CartContext";
+import stripe_img from "../assets/images/stripe_logo.png";
 import CartProduct from "./CartProduct";
 import Checkout from "./Checkout";
 
@@ -68,15 +68,27 @@ const Modal = ({ handleClose }) => {
               />
             ))}
             <RowDiv>
-              <p>
-                Total:{" "}
-                <span style={{ fontWeight: "500" }}>
-                  £{cart.getTotalCost().toFixed(2)}
-                </span>
-              </p>
-              <div onClick={checkout}>
-                <Checkout cartItems={cart.items} />
-              </div>
+              <>
+                <div style={{ display: "flex" }}>
+                  <img
+                    src={stripe_img}
+                    style={{
+                      width: "60px",
+                      marginTop: "-18px",
+                      borderRadius: "12px",
+                    }}
+                  />
+                  <p>
+                    Total:{" "}
+                    <span style={{ fontWeight: "500" }}>
+                      £{cart.getTotalCost().toFixed(2)}
+                    </span>
+                  </p>
+                  <div onClick={checkout}>
+                    <Checkout cartItems={cart.items} />
+                  </div>
+                </div>
+              </>
             </RowDiv>
           </>
         ) : (
