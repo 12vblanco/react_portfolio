@@ -15,21 +15,29 @@ const Modal = ({ handleClose }) => {
 
   const checkout = async () => {
     alert("you are being redirected to stripe");
-    await fetch("api/stripe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items: cart.items }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        if (response.url) {
-          window.location.assign(response.url);
-        }
+    try {
+      const response = await fetch("api/stripe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: cart.items }),
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.url) {
+        window.location.assign(data.url);
+      } else {
+        throw new Error("Invalid response from server");
+      }
+    } catch (error) {
+      console.error("Error during checkout:", error);
+    }
   };
 
   const productsCount = cart.items.reduce(
