@@ -16,7 +16,8 @@ const CheckoutForm = ({ cartItems }) => {
   const itemIds = cartItems.map((item) => item.id);
   const itemIdsString = itemIds.join(",");
   const isNameValid = (name) => {
-    const pattern = /^[a-zA-Z\s`-]+$/;
+    // eslint-disable-next-line no-useless-escape
+    const pattern = /^[a-zA-Z\s\`-]+$/;
     return pattern.test(name);
   };
 
