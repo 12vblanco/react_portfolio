@@ -6,39 +6,30 @@ import styled from "styled-components";
 import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
 import Checkout from "./Checkout";
-import { loadStripe } from "@stripe/stripe-js";
 
 const Modal = ({ handleClose }) => {
+  Modal.propTypes = {
+    handleClose: PropTypes.func,
+  };
   const cart = useContext(CartContext);
 
-  // Load Stripe asynchronously
-  const stripePromise = loadStripe(
-    "pk_test_51HqgwdGKpDMhyEuL11A63hDc42CNdjZbMH93xDPIumVyYlgGe5byVF9rXhgW0rs64r0uaDjQUqlwOUDXrbTZy9nx00cyCIwiBm"
-  );
-
   const checkout = async () => {
-    alert("Redirecting to checkout...");
-    // Example fetch logic to initiate checkout
-    try {
-      const response = await fetch("/api/stripe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: cart.items }),
+    alert("you are being redirected to stripe");
+    await fetch("api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: cart.items }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response.url) {
+          window.location.assign(response.url);
+        }
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const session = await response.json();
-      const stripe = await stripePromise;
-      const result = await stripe.redirectToCheckout({ sessionId: session.id });
-      if (result.error) {
-        alert(result.error.message);
-      }
-    } catch (error) {
-      console.error("Error initiating checkout:", error);
-    }
   };
 
   const productsCount = cart.items.reduce(
@@ -84,8 +75,7 @@ const Modal = ({ handleClose }) => {
                 </span>
               </p>
               <div onClick={checkout}>
-                {/* Use Checkout component for checkout functionality */}
-                <Checkout />
+                <Checkout cart={cart} />
               </div>
             </RowDiv>
           </>
@@ -116,11 +106,6 @@ const Modal = ({ handleClose }) => {
       </>
     </ModalWrapper>
   );
-};
-
-// PropTypes declaration outside the component
-Modal.propTypes = {
-  handleClose: PropTypes.func.isRequired,
 };
 
 const ModalWrapper = styled.div`

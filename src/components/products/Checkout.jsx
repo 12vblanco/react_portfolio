@@ -1,33 +1,33 @@
-import { loadStripe } from "@stripe/stripe-js";
+import Stripe from "@stripe/stripe-js";
 import styled from "styled-components";
 
-const stripePromise = loadStripe(
+const stripe = Stripe(
   "pk_test_51HqgwdGKpDMhyEuL11A63hDc42CNdjZbMH93xDPIumVyYlgGe5byVF9rXhgW0rs64r0uaDjQUqlwOUDXrbTZy9nx00cyCIwiBm"
 );
 
-const callApi = async (e) => {
+const callApi = (e) => {
   e.preventDefault();
-  try {
-    const response = await fetch("/api/stripe", {
-      method: "POST",
+  fetch("/api/stripe", {
+    method: "POST",
+  })
+    .then((response) => {
+      console.log(response);
+
+      return response.json();
+    })
+    .then((session) => {
+      console.log(session);
+      console.log(stripe);
+      return stripe.redirectToCheckout({ sessionId: session.id });
+    })
+    .then((result) => {
+      if (result.err) {
+        return alert(result.err.message);
+      }
+    })
+    .catch((err) => {
+      return console.error("Error:", err);
     });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const session = await response.json();
-    console.log("Session ID:", session.id);
-
-    const stripe = await stripePromise;
-    const result = await stripe.redirectToCheckout({ sessionId: session.id });
-
-    if (result.error) {
-      alert(result.error.message);
-    }
-  } catch (err) {
-    console.error("Error:", err);
-  }
 };
 
 const Checkout = () => {
