@@ -10,15 +10,21 @@ const Form = () => {
 
     let myForm = document.getElementById("contactForm");
     let formData = new FormData(myForm);
+    console.log("Form Data: ", Object.fromEntries(formData));
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(formData).toString(),
     })
       .then(() => {
+        console.log("Form submission successful");
         navigate("/Success");
       })
-      .catch((error) => alert(error));
+      .catch((error) => {
+        console.error("Form submission error:", error);
+        alert(error);
+      });
   };
 
   return (
