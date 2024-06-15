@@ -7,13 +7,17 @@ const stripePromise = loadStripe(
 
 const callApi = async (e) => {
   e.preventDefault();
-
   try {
     const response = await fetch("/api/stripe", {
       method: "POST",
     });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
     const session = await response.json();
-    console.log(session);
+    console.log("Session ID:", session.id);
 
     const stripe = await stripePromise;
     const result = await stripe.redirectToCheckout({ sessionId: session.id });
