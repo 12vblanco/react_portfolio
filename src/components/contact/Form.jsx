@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MainContainer from "../../components/MainContainer";
+import MainContainer from "../MainContainer";
 
 const Form = () => {
   let navigate = useNavigate();

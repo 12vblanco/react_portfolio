@@ -4,11 +4,6 @@ import styled from "styled-components";
 import Cart from "../products/Cart";
 
 const NavMenu = ({ handleShow, closeMenu, click }) => {
-  NavMenu.propTypes = {
-    handleShow: PropTypes.func,
-    closeMenu: PropTypes.func,
-    click: PropTypes.func,
-  };
   return (
     <>
       <StyledLink>
@@ -46,6 +41,12 @@ const NavMenu = ({ handleShow, closeMenu, click }) => {
       )}
     </>
   );
+};
+
+NavMenu.propTypes = {
+  handleShow: PropTypes.func,
+  closeMenu: PropTypes.func,
+  click: PropTypes.bool.isRequired,
 };
 
 export const StyledLink = styled.div`

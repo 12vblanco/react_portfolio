@@ -1,8 +1,8 @@
 // import PropTypes from "prop-types";
 import styled from "styled-components";
-import MainContainer from "../components/MainContainer";
-import StyledContainer from "../components/StyledContainer";
-import { blogEntries } from "../components/blog/BlogEntries";
+import MainContainer from "../components/MainContainer.jsx";
+import StyledContainer from "../components/StyledContainer.jsx";
+import { blogEntries } from "../components/blog/BlogEntries.jsx";
 import BlogEntry from "../components/blog/BlogEntry.jsx";
 
 const BlogPage = () => {

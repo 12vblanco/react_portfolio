@@ -6,31 +6,39 @@ import styled from "styled-components";
 import stripe_img from "../../assets/images/stripe_logo.png";
 import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
-import Checkout from "./Checkout";
 
 const Modal = ({ handleClose }) => {
   Modal.propTypes = {
     handleClose: PropTypes.func,
   };
+
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    alert("you are being redirected to stripe");
-    await fetch("api/stripe", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items: cart.items }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        if (response.url) {
-          window.location.assign(response.url);
-        }
+    alert("You are being redirected to Stripe");
+    try {
+      const response = await fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount: cart.getTotalCost() * 100 }),
       });
+      const data = await response.json();
+      if (data.client_secret) {
+        const stripe = await window.Stripe(
+          import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+        );
+        const { error } = await stripe.redirectToCheckout({
+          sessionId: data.client_secret,
+        });
+        if (error) {
+          console.error("Error redirecting to checkout:", error);
+        }
+      }
+    } catch (error) {
+      console.error("Error processing payment:", error);
+    }
   };
 
   const productsCount = cart.items.reduce(
@@ -56,68 +64,63 @@ const Modal = ({ handleClose }) => {
           <IoMdClose onClick={handleClose} />
         </Close>
       </ModalHeader>
-      <>
-        {productsCount > 0 ? (
-          <>
-            {cart.items.map((currentProduct, i) => (
-              <CartProduct
-                key={i}
-                id={currentProduct.id}
-                quantity={currentProduct.quantity}
-                name={currentProduct.name}
-                img={currentProduct.img}
-              />
-            ))}
-            <RowDiv>
-              <>
-                <div style={{ display: "flex" }}>
-                  <img
-                    src={stripe_img}
-                    style={{
-                      width: "60px",
-                      height: "auto",
-                      marginTop: "-18px",
-                      borderRadius: "12px",
-                    }}
-                  />
-                  <p>
-                    Total:{" "}
-                    <span style={{ fontWeight: "500" }}>
-                      £{cart.getTotalCost().toFixed(2)}
-                    </span>
-                  </p>
-                  <div onClick={checkout}>
-                    <Checkout cartItems={cart.items} />
-                  </div>
-                </div>
-              </>
-            </RowDiv>
-          </>
-        ) : (
-          <>
-            <h5
-              style={{
-                textTransform: "sentence",
-                fontWeight: "300",
-                marginTop: "18px",
-                fontSize: "15px",
-              }}
-            >
-              Click{" "}
-              <MdOutlineAddShoppingCart
+      {productsCount > 0 ? (
+        <>
+          {cart.items.map((currentProduct, i) => (
+            <CartProduct
+              key={i}
+              id={currentProduct.id}
+              quantity={currentProduct.quantity}
+              name={currentProduct.name}
+              img={currentProduct.img}
+            />
+          ))}
+          <RowDiv>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src={stripe_img}
                 style={{
-                  fontSize: "36px",
-                  cursor: "pointer",
-                  margin: "0 6px -14px 6px",
+                  width: "60px",
+                  height: "28px",
+                  marginRight: "10px",
+                  borderRadius: "12px",
                 }}
-                onClick={() => window.location.assign("/")}
+                alt="Stripe"
               />
-              to add items
-            </h5>
-          </>
-        )}
-        {productsCount === 0 && timer()}
-      </>
+              <p>
+                Total:{" "}
+                <span style={{ fontWeight: "500" }}>
+                  £{cart.getTotalCost().toFixed(2)}
+                </span>
+              </p>
+            </div>
+            <CheckoutButton onClick={checkout}>Checkout</CheckoutButton>
+          </RowDiv>
+        </>
+      ) : (
+        <>
+          <h5
+            style={{
+              textTransform: "sentence",
+              fontWeight: "300",
+              marginTop: "18px",
+              fontSize: "15px",
+            }}
+          >
+            Click{" "}
+            <MdOutlineAddShoppingCart
+              style={{
+                fontSize: "36px",
+                cursor: "pointer",
+                margin: "0 6px -14px 6px",
+              }}
+              onClick={() => window.location.assign("/")}
+            />
+            to add items
+          </h5>
+        </>
+      )}
+      {productsCount === 0 && timer()}
     </ModalWrapper>
   );
 };
@@ -178,6 +181,19 @@ const RowDiv = styled.div`
 
 const P = styled.p`
   font-size: 14px;
+`;
+
+const CheckoutButton = styled.button`
+  background-color: #0070f3;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #0058b3;
+  }
 `;
 
 export default Modal;

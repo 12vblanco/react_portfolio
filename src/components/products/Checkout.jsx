@@ -4,7 +4,7 @@ import axios from "axios";
 import PropTypes from "prop-types";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../utils/CartContext";
-import CheckoutForm from "./CheckoutForm";
+// import CheckoutForm from "./CheckoutForm";
 
 const initStripe = async () => {
   const res = await axios.get("/api/publishable-key");
@@ -13,7 +13,7 @@ const initStripe = async () => {
   return loadStripe(publishableKey);
 };
 
-const Checkout = ({ cartItems }) => {
+const Checkout = () => {
   Checkout.propTypes = {
     cartItems: PropTypes.func,
   };
@@ -54,7 +54,7 @@ const Checkout = ({ cartItems }) => {
           appearance: { theme: "stripe" },
         }}
       >
-        <CheckoutForm cartItems={cartItems} />
+        {/* <CheckoutForm cartItems={cartItems} /> */}
       </Elements>
       {/* )} */}
     </div>
