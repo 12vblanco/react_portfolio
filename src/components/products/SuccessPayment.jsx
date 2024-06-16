@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-function SuccessPayment() {
+const SuccessPayment = () => {
   const handleBackHome = () => {
     window.location.href = "/";
   };
@@ -19,7 +19,7 @@ function SuccessPayment() {
       <ContactBtn onClick={handleBackHome} tagName={"Go Back!"} />{" "}
     </Div>
   );
-}
+};
 
 const Div = styled.div`
   display: flex;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-function Success() {
+const Success = () => {
   const handleBackHome = () => {
     window.location.href = "/home";
   };
@@ -11,7 +11,7 @@ function Success() {
       <ContactBtn onClick={handleBackHome} tagName={"Go Back!"} />{" "}
     </Div>
   );
-}
+};
 
 const Div = styled.div`
   display: flex;
