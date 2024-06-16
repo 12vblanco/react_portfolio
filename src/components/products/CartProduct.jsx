@@ -61,6 +61,14 @@ const RemoveButton = styled.button`
   cursor: pointer;
   z-index: 110;
   border: 2px solid var(--color-accent);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 0.1rem 0.3rem 1rem rgba(3, 3, 3, 0.4);
+  }
+  &:active {
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
+  }
 `;
 
 const Name = styled.p`

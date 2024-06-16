@@ -7,8 +7,7 @@ import img2 from "../../assets/images/home/cherry_dec-2x.jpg";
 import img6 from "../../assets/images/home/douglas__black-2x.jpg";
 import img1 from "../../assets/images/home/ley__blue-2x.jpg";
 import img4 from "../../assets/images/home/sycamore__green-2x.jpg";
-//leylandii = price_1LxHiBGKpDMhyEuLOkox92AU
-//prunus= price_1LxHk4GKpDMhyEuL53Xfr9oB
+
 const products = [
   {
     id: "price_1LxHiBGKpDMhyEuLOkox92AU",
@@ -33,7 +32,7 @@ const products = [
     img: img2,
   },
   {
-    id: "3",
+    id: "price_1PSHkmGKpDMhyEuLKuev7Uk2",
     name: "Fraxinus excelsior A4",
     format: "A4 paper (297 x 210 mm)",
     price: "25",
@@ -44,7 +43,7 @@ const products = [
     img: img3,
   },
   {
-    id: "4",
+    id: "price_1PSHlQGKpDMhyEuL9EJvZKc8",
     name: "Acer pseudoplatanus",
     format: "A1 paper (594 x 841 mm)",
     price: "90",
@@ -55,7 +54,7 @@ const products = [
     img: img4,
   },
   {
-    id: "5",
+    id: "price_1PSJDuGKpDMhyEuLJSOwD2kZ",
     name: "Acer platanoides",
     format: "A2 paper (420 x 594 mm)",
     price: "60",
@@ -66,7 +65,7 @@ const products = [
     img: img5,
   },
   {
-    id: "6",
+    id: "price_1PSJGiGKpDMhyEuLYjqMmXpV",
     name: "Pseudotsuga menziesii",
     format: "A1 paper (594 x 841 mm)",
     price: "90",
@@ -77,7 +76,7 @@ const products = [
     img: img6,
   },
   {
-    id: "7",
+    id: "price_1PSJTRGKpDMhyEuLhABhPTtL",
     name: "Prunus serrulata",
     format: "A2 paper (420 x 594 mm)",
     price: "60",
@@ -88,8 +87,8 @@ const products = [
     img: img7,
   },
   {
-    id: "8",
-    name: "Fraxinus excelsion",
+    id: "price_1PSJIfGKpDMhyEuL0EjZeL3l",
+    name: "Fraxinus excelsior",
     format: "A2 paper (420 x 594 mm)",
     price: "60",
     description:
@@ -102,7 +101,7 @@ const products = [
     next: "/prunusAvium",
   },
   {
-    id: "9",
+    id: "price_1PSJKWGKpDMhyEuL95b3lzaO",
     name: "Prunus avium",
     format: "A2 paper (420 x 594 mm)",
     price: "60",

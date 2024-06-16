@@ -15,31 +15,22 @@ const Modal = ({ handleClose }) => {
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    try {
-      const response = await fetch("/api/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: cart.getTotalCost() * 100 }),
-      });
-      const data = await response.json();
-      if (data.client_secret) {
-        const stripe = await window.Stripe(
-          import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-        );
-        const { error } = await stripe.redirectToCheckout({
-          sessionId: data.client_secret,
-        });
-        if (error) {
-          console.error("Error redirecting to checkout:", error);
+    await fetch("http://localhost:4000/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ items: cart.items }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        if (response.url) {
+          window.location.assign(response.url);
         }
-      }
-    } catch (error) {
-      console.error("Error processing payment:", error);
-    }
+      });
   };
-
   const productsCount = cart.items.reduce(
     (sum, product) => sum + product.quantity,
     0
@@ -74,8 +65,13 @@ const Modal = ({ handleClose }) => {
               img={currentProduct.img}
             />
           ))}
-          <RowDiv>
-            <div style={{ display: "flex", alignItems: "center" }}>
+          <RowCheckout>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <img
                 src={stripe_img}
                 style={{
@@ -94,7 +90,7 @@ const Modal = ({ handleClose }) => {
               </p>
             </div>
             <CheckoutButton onClick={checkout}>Checkout</CheckoutButton>
-          </RowDiv>
+          </RowCheckout>
         </>
       ) : (
         <>
@@ -126,20 +122,23 @@ const Modal = ({ handleClose }) => {
 
 const ModalWrapper = styled.div`
   position: fixed;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   top: 110px;
-  right: -14px;
+  right: 0px;
   width: 340px;
   height: auto;
-  max-height: 80vh;
+  max-height: 470px;
   font-size: 25px;
-  padding: 1rem 1.4rem 1.4rem 1.4rem;
-  border: solid 2px #333;
+  padding: 1rem 1.4rem 0rem 1.4rem;
+  border: solid 1.8px #333;
   border-right: none;
-  background: #f4f7f8;
+  background: var(--color-bg);
   z-index: 124;
   border-radius: 0.6rem 0 0 0.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   @media (max-width: 460px) {
     width: 340px;
     font-size: 20px;
@@ -166,16 +165,17 @@ const Close = styled.div`
   }
 `;
 
-const RowDiv = styled.div`
-  margin-top: 6px;
-  margin-bottom: -18px;
+const RowCheckout = styled.div`
+  position: sticky;
+  bottom: 0px;
+  padding-top: 6px;
   font-size: 20px;
   width: 100%;
-  height: auto;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
+  background: var(--color-bg);
 `;
 
 const P = styled.p`
@@ -183,15 +183,24 @@ const P = styled.p`
 `;
 
 const CheckoutButton = styled.button`
-  background-color: #0070f3;
-  color: #ffffff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
+  color: var(--color-secondary);
+  background: var(--color-bg);
+  padding: 0.2rem 0.4rem;
+  margin-left: 2rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.3s;
+  z-index: 110;
+  border: 2px solid #333;
+  cursor: pointer;
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
+  transition: all 0.3s;
   &:hover {
-    background-color: #0058b3;
+    box-shadow: 0.1rem 0.3rem 1rem rgba(3, 3, 3, 0.4);
+  }
+  &:active {
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
   }
 `;
 

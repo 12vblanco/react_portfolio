@@ -5,10 +5,9 @@ import StyledContainer from "../components/StyledContainer";
 import Product from "../components/products/Product";
 import { products } from "../components/products/Products";
 
-const HomePage = ({ handleShow }) => {
-  HomePage.propTypes = {
-    handleShow: PropTypes.func,
-  };
+const HomePage = ({ handleShow, scrollToTop }) => {
+  scrollToTop();
+
   return (
     <MainContainer style={{ marginBottom: "2rem" }}>
       <StyledContainer style={{ marginBottom: "2rem" }}>
@@ -22,6 +21,11 @@ const HomePage = ({ handleShow }) => {
       </StyledContainer>
     </MainContainer>
   );
+};
+
+HomePage.propTypes = {
+  handleShow: PropTypes.func,
+  scrollToTop: PropTypes.func,
 };
 
 const ProductCard = styled.div`

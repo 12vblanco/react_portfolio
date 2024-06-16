@@ -1,10 +1,13 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Img3 from "../assets/images/about/ley1.jpg";
 import Img2 from "../assets/images/about/maple-400.jpg";
 import Img1 from "../assets/images/about/round.jpg";
 import MainContainer from "../components/MainContainer";
 
-const AboutPage = () => {
+const AboutPage = ({ scrollToTop }) => {
+  scrollToTop();
+
   return (
     <MainContainer>
       <Div>
@@ -76,6 +79,10 @@ const AboutPage = () => {
       </Div>
     </MainContainer>
   );
+};
+
+AboutPage.propTypes = {
+  scrollToTop: PropTypes.func,
 };
 
 const Div = styled.div`

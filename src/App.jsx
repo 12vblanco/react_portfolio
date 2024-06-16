@@ -5,6 +5,8 @@ import Success from "./components/contact/Success";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/NavBar";
 import Cart from "./components/products/Cart";
+import ErrorPayment from "./components/products/ErrorPayment";
+import SuccessPayment from "./components/products/SuccessPayment";
 import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
@@ -42,10 +44,18 @@ function App() {
             path="/contact"
             element={<ContactPage scrollToTop={scrollToTop} />}
           />
-          <Route path="/cart" element={<Cart scrollToTop={scrollToTop} />} />
+          <Route path="/cart" element={<Cart />} />
           <Route
             path="/success"
             element={<Success scrollToTop={scrollToTop} />}
+          />
+          <Route
+            path="/successPayment"
+            element={<SuccessPayment scrollToTop={scrollToTop} />}
+          />
+          <Route
+            path="/errorPayment"
+            element={<ErrorPayment scrollToTop={scrollToTop} />}
           />
         </Routes>
         <Footer />

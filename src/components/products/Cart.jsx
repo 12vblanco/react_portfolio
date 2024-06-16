@@ -5,9 +5,6 @@ import styled from "styled-components";
 import { CartContext } from "../../utils/CartContext";
 
 const Cart = ({ handleShow }) => {
-  Cart.propTypes = {
-    handleShow: PropTypes.func,
-  };
   const cart = useContext(CartContext);
 
   const productsCount = cart.items.reduce(
@@ -24,6 +21,10 @@ const Cart = ({ handleShow }) => {
   );
 };
 
+Cart.propTypes = {
+  handleShow: PropTypes.func,
+};
+
 const ShoppingDiv = styled.div`
   display: flex;
   position: relative;
@@ -38,7 +39,6 @@ const ShoppingCart = styled(MdOutlineShoppingCart)`
   position: relative;
   @media (max-width: 646px) {
     font-size: 44px;
-    /* margin-top: 6px; */
   }
 `;
 

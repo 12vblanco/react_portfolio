@@ -101,7 +101,7 @@ const FromContainer = styled.div`
   max-width: 700px;
   padding: 0.6rem 0.75rem 2rem 0.75rem;
   border-radius: 0.8rem;
-  margin-top: -90px;
+  margin-top: -130px;
   @media (max-width: 440px) {
     max-width: 100%;
     padding: 10px 1.8rem;
