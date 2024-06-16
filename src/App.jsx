@@ -11,6 +11,7 @@ import AboutPage from "./pages/AboutPage";
 import BlogPage from "./pages/BlogPage";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
+import Terms from "./pages/Terms";
 import CartProvider from "./utils/CartContext";
 
 function scrollToTop() {
@@ -57,6 +58,7 @@ function App() {
             path="/errorPayment"
             element={<ErrorPayment scrollToTop={scrollToTop} />}
           />
+          <Route path="/terms" element={<Terms scrollToTop={scrollToTop} />} />
         </Routes>
         <Footer />
       </>

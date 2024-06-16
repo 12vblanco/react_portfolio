@@ -2,10 +2,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const MainContainer = (props) => {
-  MainContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-
   return <Div>{props.children}</Div>;
 };
 
@@ -31,5 +27,9 @@ const Div = styled.div`
     margin-bottom: 1rem;
   }
 `;
+
+MainContainer.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default MainContainer;

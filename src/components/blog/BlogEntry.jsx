@@ -2,9 +2,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const BlogEntry = ({ entry }) => {
-  BlogEntry.propTypes = {
-    entry: PropTypes.object.isRequired,
-  };
   return (
     <MainContainer>
       <EntryContainer>
@@ -27,6 +24,10 @@ const BlogEntry = ({ entry }) => {
       </EntryContainer>
     </MainContainer>
   );
+};
+
+BlogEntry.propTypes = {
+  entry: PropTypes.object.isRequired,
 };
 
 const MainContainer = styled.div`

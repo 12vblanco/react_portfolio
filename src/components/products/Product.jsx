@@ -1,15 +1,10 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { ImInfo } from "react-icons/im";
-// import { Link } from "react-router-dom";
 import styled from "styled-components";
 import AddToButton from "./AddToButton";
 
 const Product = ({ handleShow, product }) => {
-  Product.propTypes = {
-    handleShow: PropTypes.func,
-    product: PropTypes.func,
-  };
   const [showInfo, setShowInfo] = useState(false);
   const clickHandler = () => {
     setShowInfo(!showInfo);
@@ -51,6 +46,11 @@ const Product = ({ handleShow, product }) => {
       </ProductWrapper>
     </>
   );
+};
+
+Product.propTypes = {
+  handleShow: PropTypes.func,
+  product: PropTypes.func,
 };
 
 const ProductWrapper = styled.div`

@@ -12,12 +12,7 @@ export const CartContext = createContext({
 });
 
 export function CartProvider({ children }) {
-  CartProvider.propTypes = {
-    children: PropTypes.func,
-  };
   const [cartProducts, setCartProducts] = useState([]);
-
-  // cart will have id and qty. I
 
   function getProductQty(id) {
     const quantity = cartProducts.find(
@@ -34,11 +29,8 @@ export function CartProvider({ children }) {
     const quantity = getProductQty(id);
 
     if (quantity === 0) {
-      //product not in cart
-
       setCartProducts([...cartProducts, { id: id, quantity: 1 }]);
     } else {
-      //product in cart
       setCartProducts(
         cartProducts.map((product) =>
           product.id === id
@@ -96,5 +88,9 @@ export function CartProvider({ children }) {
     <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
   );
 }
+
+CartProvider.propTypes = {
+  children: PropTypes.func,
+};
 
 export default CartProvider;

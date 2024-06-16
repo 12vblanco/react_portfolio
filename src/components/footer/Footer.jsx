@@ -28,9 +28,9 @@ const FooterDiv = styled.div`
   z-index: 234;
 `;
 const Div = styled.div`
-  padding: 0.8rem;
+  padding: 0.4rem;
   background: var(--color-bg);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 500;
   @media (max-width: 340px) {
     font-size: 10px;

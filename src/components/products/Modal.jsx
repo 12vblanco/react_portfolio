@@ -8,10 +8,6 @@ import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
 
 const Modal = ({ handleClose }) => {
-  Modal.propTypes = {
-    handleClose: PropTypes.func,
-  };
-
   const cart = useContext(CartContext);
 
   const checkout = async () => {
@@ -99,6 +95,7 @@ const Modal = ({ handleClose }) => {
               textTransform: "sentence",
               fontWeight: "300",
               marginTop: "18px",
+              marginBottom: "28px",
               fontSize: "15px",
             }}
           >
@@ -118,6 +115,10 @@ const Modal = ({ handleClose }) => {
       {productsCount === 0 && timer()}
     </ModalWrapper>
   );
+};
+
+Modal.propTypes = {
+  handleClose: PropTypes.func,
 };
 
 const ModalWrapper = styled.div`

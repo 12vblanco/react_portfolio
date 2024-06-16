@@ -5,10 +5,6 @@ import { CartContext } from "../../utils/CartContext";
 import { getProductData } from "./Products";
 
 const CartProduct = (props) => {
-  CartProduct.propTypes = {
-    id: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
-  };
   const cart = useContext(CartContext);
   const id = props.id;
   const quantity = props.quantity;
@@ -48,6 +44,11 @@ const CartProduct = (props) => {
       <hr style={{ marginTop: "1rem" }}></hr>
     </>
   );
+};
+
+CartProduct.propTypes = {
+  id: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 const RemoveButton = styled.button`
