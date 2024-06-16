@@ -77,7 +77,7 @@ const Modal = ({ handleClose }) => {
                 style={{
                   width: "60px",
                   height: "28px",
-                  marginRight: "10px",
+                  marginRight: "17px",
                   borderRadius: "12px",
                 }}
                 alt="Stripe"
@@ -186,7 +186,7 @@ const CheckoutButton = styled.button`
   color: var(--color-secondary);
   background: var(--color-bg);
   padding: 0.2rem 0.4rem;
-  margin-left: 2rem;
+  margin-left: 1rem;
   border-radius: 6px;
   font-size: 0.875rem;
   font-weight: 500;
