@@ -15,7 +15,6 @@ const Modal = ({ handleClose }) => {
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    alert("You are being redirected to Stripe");
     try {
       const response = await fetch("/api/create-payment-intent", {
         method: "POST",
