@@ -8,7 +8,18 @@ const stripe = stripeModule(
 );
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "https://react-portfolio-honours.netlify.app",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+app.get("/checkout", (req, res) => {
+  res.json({ message: "CORS enabled for all origins!" });
+});
+app.listen(4000, () => {
+  console.log("Server running on port 4000");
+});
 app.use(express.static("public"));
 app.use(express.json());
 
