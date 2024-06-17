@@ -12,7 +12,7 @@ const Modal = ({ handleClose }) => {
 
   const checkout = async () => {
     await fetch(
-      "https://react-portfolio-honours.netlify.app/netlify/functions/checkout.js",
+      "https://react-portfolio-honours.netlify.app/.netlify/functions/checkout",
       {
         method: "POST",
         headers: {
