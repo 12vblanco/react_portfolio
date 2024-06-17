@@ -29,13 +29,6 @@ app.post("/checkout", async (req, res) => {
       cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
     });
 
-    res.setHeader(
-      "Access-Control-Allow-Origin",
-      "https://react-portfolio-honours.netlify.app/"
-    );
-    res.setHeader("Access-Control-Allow-Methods", "POST");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
     res.json({
       url: session.url,
     });
