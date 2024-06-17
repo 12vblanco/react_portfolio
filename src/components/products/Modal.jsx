@@ -68,15 +68,24 @@ const Modal = ({ handleClose }) => {
                 alignItems: "center",
               }}
             >
-              <Img src={stripe_img} alt="Stripe's logo" />
-              <p style={{ fontWeight: "400", fontSize: "16px" }}>
+              <img
+                src={stripe_img}
+                style={{
+                  width: "60px",
+                  height: "28px",
+                  marginRight: "17px",
+                  borderRadius: "12px",
+                }}
+                alt="Stripe"
+              />
+              <p>
                 Total:{" "}
-                <span style={{ fontWeight: "400", fontSize: "16px" }}>
+                <span style={{ fontWeight: "500" }}>
                   £{cart.getTotalCost().toFixed(2)}
                 </span>
               </p>
             </div>
-            <CheckoutButton onClick={checkout}>Checkout </CheckoutButton>
+            <CheckoutButton onClick={checkout}>Checkout</CheckoutButton>
           </RowCheckout>
         </>
       ) : (
@@ -194,12 +203,6 @@ const CheckoutButton = styled.button`
   &:active {
     box-shadow: 0.1rem 0.1rem 0.1rem rgba(3, 3, 3, 0.4);
   }
-`;
-const Img = styled.img`
-  width: 60px;
-  height: 28px;
-  margin-right: 22px;
-  border-radius: 12px;
 `;
 
 export default Modal;
