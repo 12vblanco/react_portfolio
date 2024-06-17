@@ -11,13 +11,16 @@ const Modal = ({ handleClose }) => {
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    await fetch("/.netlify/functions/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ items: cart.items }),
-    })
+    await fetch(
+      "https://react-portfolio-honours.netlify.app/.netlify/functions/checkout",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items: cart.items }),
+      }
+    )
       .then((response) => {
         return response.json();
       })
