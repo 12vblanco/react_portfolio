@@ -1,13 +1,10 @@
-import cors from "cors";
 import express from "express";
 import serverless from "serverless-http";
 import stripeModule from "stripe";
 
-const stripe = stripeModule("STRIPE_SECRET_KEY");
+const stripe = stripeModule(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
-app.use(cors());
-app.use(express.static("public"));
 app.use(express.json());
 
 app.post("/checkout", async (req, res) => {
@@ -27,10 +24,8 @@ app.post("/checkout", async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     line_items: lineItems,
     mode: "payment",
-    success_url:
-      "https://react-portfolio-honours.netlify.app/.netlify/functions/successPayment",
-    cancel_url:
-      "https://react-portfolio-honours.netlify.app/.netlify/functions/errorPayment",
+    success_url: "https://react-portfolio-honours.netlify.app/success",
+    cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
   });
 
   res.send(
