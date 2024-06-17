@@ -5,6 +5,7 @@ import Success from "./components/contact/Success";
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/navbar/NavBar";
 import Cart from "./components/products/Cart";
+import Checkout from "./components/products/Checkout";
 import ErrorPayment from "./components/products/ErrorPayment";
 import SuccessPayment from "./components/products/SuccessPayment";
 import AboutPage from "./pages/AboutPage";
@@ -59,6 +60,7 @@ function App() {
             element={<ErrorPayment scrollToTop={scrollToTop} />}
           />
           <Route path="/terms" element={<Terms scrollToTop={scrollToTop} />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </>

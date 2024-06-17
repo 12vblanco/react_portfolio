@@ -1,15 +1,10 @@
-import cors from "cors";
 import express from "express";
 import serverless from "serverless-http";
 import stripeModule from "stripe";
 
-const stripe = stripeModule(
-  "sk_test_51HqgwdGKpDMhyEuLY42Q4cG9H8B5khHRskna4OXNxZrDwSWUJ0G0RdfzFVqgZ18IsGJhNmc0fU0pBmBtqu3cvt8s00RdvEXKtF"
-);
+const stripe = stripeModule(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
-app.use(cors());
-app.use(express.static("public"));
 app.use(express.json());
 
 app.post("/checkout", async (req, res) => {
@@ -26,20 +21,21 @@ app.post("/checkout", async (req, res) => {
     });
   });
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: lineItems,
-    mode: "payment",
-    success_url:
-      "https://react-portfolio-honours.netlify.app/.netlify/functions/successPayment",
-    cancel_url:
-      "https://react-portfolio-honours.netlify.app/.netlify/functions/errorPayment",
-  });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "https://react-portfolio-honours.netlify.app/success",
+      cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
+    });
 
-  res.send(
-    JSON.stringify({
+    res.json({
       url: session.url,
-    })
-  );
+    });
+  } catch (error) {
+    console.error("Stripe Checkout Session creation failed:", error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 export const handler = serverless(app);
