@@ -48,7 +48,8 @@ const Checkout = () => {
     </div>
   );
 };
-checkout.propTypes = {
+
+Checkout.propTypes = {
   cartItems: PropTypes.func,
 };
 
