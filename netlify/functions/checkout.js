@@ -21,18 +21,21 @@ app.post("/checkout", async (req, res) => {
     });
   });
 
-  const session = await stripe.checkout.sessions.create({
-    line_items: lineItems,
-    mode: "payment",
-    success_url: "https://react-portfolio-honours.netlify.app/success",
-    cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
-  });
+  try {
+    const session = await stripe.checkout.sessions.create({
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "https://react-portfolio-honours.netlify.app/success",
+      cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
+    });
 
-  res.send(
-    JSON.stringify({
+    res.json({
       url: session.url,
-    })
-  );
+    });
+  } catch (error) {
+    console.error("Stripe Checkout Session creation failed:", error);
+    res.status(500).json({ error: error.message });
+  }
 });
 
 export const handler = serverless(app);
