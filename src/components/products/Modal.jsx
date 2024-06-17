@@ -11,7 +11,7 @@ const Modal = ({ handleClose }) => {
   const cart = useContext(CartContext);
 
   const checkout = async () => {
-    await fetch("/.netlify/functions/checkout", {
+    await fetch("/.netlify/functions/checkout.js", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
