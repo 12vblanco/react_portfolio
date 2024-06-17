@@ -3,9 +3,7 @@ import express from "express";
 import serverless from "serverless-http";
 import stripeModule from "stripe";
 
-const stripe = stripeModule(
-  "sk_test_51HqgwdGKpDMhyEuLY42Q4cG9H8B5khHRskna4OXNxZrDwSWUJ0G0RdfzFVqgZ18IsGJhNmc0fU0pBmBtqu3cvt8s00RdvEXKtF"
-);
+const stripe = stripeModule("STRIPE_SECRET_KEY");
 
 const app = express();
 app.use(cors());
