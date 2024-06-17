@@ -12,7 +12,7 @@ const initStripe = async () => {
   return loadStripe(publishableKey);
 };
 
-const checkout = () => {
+const Checkout = () => {
   const cart = useContext(CartContext);
   const stripePromise = initStripe();
   const [clientSecretSettings, setClientSecretSettings] = useState({
@@ -52,4 +52,4 @@ checkout.propTypes = {
   cartItems: PropTypes.func,
 };
 
-export default checkout;
+export default Checkout;
