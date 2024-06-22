@@ -1,14 +1,21 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Success = () => {
   const handleBackHome = () => {
-    window.location.href = "/home";
+    window.location.href = "/";
   };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      window.location.href = "/";
+    }, 4000);
+
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <Div>
       <h2>Thank you for submitting the form!</h2>
       <Text>We will get back to you soon.</Text>
-      <ContactBtn onClick={handleBackHome} tagName={"Go Back!"} />{" "}
     </Div>
   );
 };
