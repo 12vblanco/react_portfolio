@@ -2,24 +2,29 @@ import express from "express";
 import serverless from "serverless-http";
 import stripeModule from "stripe";
 
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error("STRIPE_SECRET_KEY error!!");
+}
+
 const stripe = stripeModule(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
 app.use(express.json());
 
 app.post("/checkout", async (req, res) => {
-  console.log(req.body, "request body!!");
-  const items = req.body.items;
-  let lineItems = [];
-  console.log(lineItems, "lineItems!!");
+  const { items } = req.body;
 
-  items.forEach((item) => {
-    console.log(item, "item!!");
-    lineItems.push({
-      price: item.id,
-      quantity: item.quantity,
-    });
-  });
+  if (
+    !Array.isArray(items) ||
+    items.some((item) => !item.id || !item.quantity)
+  ) {
+    return res.status(400).json({ error: "Request body error" });
+  }
+
+  const lineItems = items.map((item) => ({
+    price: item.id,
+    quantity: item.quantity,
+  }));
 
   try {
     const session = await stripe.checkout.sessions.create({
@@ -29,12 +34,10 @@ app.post("/checkout", async (req, res) => {
       cancel_url: "https://react-portfolio-honours.netlify.app/cancel",
     });
 
-    res.json({
-      url: session.url,
-    });
+    res.json({ url: session.url });
   } catch (error) {
-    console.error("Stripe Checkout Session creation failed:", error);
-    res.status(500).json({ error: error.message });
+    console.error("Stripe Checkout failed:", error);
+    res.status(500).json({ error: "Server Error" });
   }
 });
 
