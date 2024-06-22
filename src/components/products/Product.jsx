@@ -17,7 +17,7 @@ const Product = ({ handleShow, product }) => {
     <>
       <ProductWrapper>
         <Info onClick={clickHandler}>
-          {product.id === "3" ? (
+          {product.name === "Fraxinus excelsior A4" ? (
             <ImInfo style={{ color: "var(--color-bg)" }} />
           ) : (
             <ImInfo style={{ color: "var(--color-secondary)" }} />
