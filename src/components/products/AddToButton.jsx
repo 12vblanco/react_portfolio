@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
 import styled from "styled-components";
+import AddToCartIcon from "../../assets/svg/AddToCart-Icon.jsx";
 import { CartContext } from "../../utils/CartContext.jsx";
 
 const AddToButton = ({ product, handleShow }) => {
@@ -12,7 +12,9 @@ const AddToButton = ({ product, handleShow }) => {
       <AddToWrapper>
         {productQty < 1 ? (
           <RowDiv>
-            <AddIcon onClick={() => cart.addOneToCart(product.id)} />
+            <Div onClick={() => cart.addOneToCart(product.id)}>
+              <AddToCartIcon />
+            </Div>
           </RowDiv>
         ) : (
           <ColumnDiv style={{ fontSize: "2.6rem" }}>
@@ -43,14 +45,6 @@ const AddToWrapper = styled.div`
   z-index: 4;
   border-left: solid 0.1px rgba(51, 51, 51, 0.4);
 `;
-const AddIcon = styled(MdOutlineAddShoppingCart)`
-  font-size: 42px;
-  transition: all 0.2s linear;
-  color: var(--color-secondary);
-  &:hover {
-    font-size: 46px;
-  }
-`;
 
 const ColumnDiv = styled.div`
   display: flex;
@@ -65,6 +59,11 @@ const RowDiv = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+`;
+
+const Div = styled.div`
+  padding-left: 4px;
+  padding-top: 6px;
 `;
 
 const Qty = styled.span`

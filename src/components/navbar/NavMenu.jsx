@@ -27,16 +27,12 @@ const NavMenu = ({ handleShow, closeMenu, click }) => {
         </NavLink>
       </StyledLink>
       {click ? (
-        <StyledLink
-          style={{ marginLeft: "-8px", marginTop: "-46px", cursor: "pointer" }}
-        >
-          <Cart handleShow={handleShow} onClick={handleShow} />
+        <StyledLink>
+          <Cart handleShow={handleShow} click={click} />{" "}
         </StyledLink>
       ) : (
-        <StyledLink
-          style={{ marginLeft: "-22px", marginTop: "-14px", cursor: "pointer" }}
-        >
-          <Cart handleShow={handleShow} onClick={handleShow} />
+        <StyledLink>
+          <Cart handleShow={handleShow} click={click} />{" "}
         </StyledLink>
       )}
     </>

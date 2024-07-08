@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { MdOutlineShoppingCart } from "react-icons/md";
 import styled from "styled-components";
+import AddToCartIcon from "../../assets/svg/AddToCart-Icon";
 import { CartContext } from "../../utils/CartContext";
 
-const Cart = ({ handleShow }) => {
+const Cart = ({ handleShow, click }) => {
   const cart = useContext(CartContext);
 
   const productsCount = cart.items.reduce(
@@ -14,7 +14,7 @@ const Cart = ({ handleShow }) => {
   return (
     <>
       <ShoppingDiv onClick={handleShow}>
-        <ShoppingCart />
+        <AddToCartIcon />
         <Counter>{productsCount}</Counter>
       </ShoppingDiv>
     </>
@@ -23,23 +23,16 @@ const Cart = ({ handleShow }) => {
 
 Cart.propTypes = {
   handleShow: PropTypes.func,
+  click: PropTypes.func,
 };
 
 const ShoppingDiv = styled.div`
   display: flex;
+  justify-content: centre;
+  align-items: centre;
   position: relative;
-  padding-bottom: 1rem;
-`;
-
-const ShoppingCart = styled(MdOutlineShoppingCart)`
-  font-size: 46px;
-  margin-top: 52px;
-  width: 56px;
-  margin-left: 3rem;
-  position: relative;
-  @media (max-width: 646px) {
-    font-size: 44px;
-  }
+  width: 48px;
+  height: 48px;
 `;
 
 const Counter = styled.div`
@@ -53,9 +46,9 @@ const Counter = styled.div`
   font-size: 20px;
   background: var(--color-accent);
   padding: 1px;
-  position: relative;
-  top: 40px;
-  right: 16px;
+  position: absolute;
+  top: -10px;
+  right: -14px;
 `;
 
 export default Cart;

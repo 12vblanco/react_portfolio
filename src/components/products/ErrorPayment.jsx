@@ -14,9 +14,8 @@ const ErrorPayment = () => {
   }, []);
   return (
     <Div>
-      <h2>There was an error!</h2>
-      <Text>Your payment was not successful</Text>
-      <ContactBtn onClick={handleBackHome} tagName={"Go Back!"} />{" "}
+      <h2>Something went wrong with the payment</h2>
+      <Text>Please try again, or get in touch.</Text>
     </Div>
   );
 };
@@ -35,26 +34,6 @@ const Div = styled.div`
 const Text = styled.p`
   margin-bottom: 44px;
   font-weight: 500;
-`;
-
-const ContactBtn = styled.button`
-  display: flex;
-  background: var(--blue);
-  border: 1px solid var(--blue);
-  border-radius: 2px;
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--white);
-  width: 110px;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s linear;
-
-  &:hover {
-    background: rgba(40, 98, 150, 1) 100%;
-  }
 `;
 
 export default ErrorPayment;
