@@ -40,7 +40,12 @@ const Form = () => {
           data-netlify-recaptcha="true"
           onSubmit={onSubmitHandler}
         >
-          <input type="hidden" name="form-name" value="contact" />
+          <input
+            type="hidden"
+            name="form-name"
+            value="contactForm"
+            data-netlify-recaptcha="true"
+          />
           <input type="hidden" name="bot-field" />
 
           <Label htmlFor="name">
