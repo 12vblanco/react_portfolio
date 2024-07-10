@@ -1,38 +1,20 @@
-import PropTypes from "prop-types";
 import React from "react";
-import styled from "styled-components";
 
-const BurgerIcon = ({ strokeColor }) => (
-  <BurgerSvg
-    className="burger"
-    fill="none"
-    stroke="var(--color-secondary)"
-    strokeWidth="2.5"
+const HamburgerIcon = () => (
+  <svg
+    width="54"
+    height="54"
     viewBox="0 0 24 24"
+    fill="currentColor"
     xmlns="http://www.w3.org/2000/svg"
+    stroke="var(--color-secondary)"
   >
-    <path d="M5 12H20" strokeWidth="2.6" strokeLinecap="round" />
-    <path d="M5 17H20" strokeWidth="2.6" strokeLinecap="round" />
-    <path d="M5 7H20" strokeWidth="2.6" strokeLinecap="round" />
-  </BurgerSvg>
+    <path
+      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+  </svg>
 );
 
-BurgerIcon.propTypes = {
-  strokeColor: PropTypes.string,
-};
-
-BurgerIcon.defaultProps = {
-  strokeColor: "var(--color-secondary)",
-};
-
-const BurgerSvg = styled.svg`
-  width: 52px;
-  height: 52px;
-  stroke-width: 2.2;
-  margin-right: 2px;
-  cursor: pointer;
-  position: relative;
-  top: 8px;
-`;
-
-export default BurgerIcon;
+export default HamburgerIcon;

@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
-import { IoMdClose } from "react-icons/io";
-import { MdOutlineAddShoppingCart } from "react-icons/md";
 import styled from "styled-components";
 import stripe_img from "../../assets/images/stripe_logo.png";
+import CloseIcon from "../../assets/svg/CloseIcon";
 import { CartContext } from "../../utils/CartContext";
 import CartProduct from "./CartProduct";
 
@@ -27,92 +26,60 @@ const Modal = ({ handleClose }) => {
         }
       });
   };
+
   const productsCount = cart.items.reduce(
     (sum, product) => sum + product.quantity,
     0
   );
 
-  function timer() {
-    setTimeout(() => handleClose(), 2900);
+  if (productsCount === 0) {
+    return null;
   }
 
   return (
     <ModalWrapper>
-      <ModalHeader
-        style={
-          productsCount > 0
-            ? { borderBottom: "1px solid #333" }
-            : { borderBottom: "none" }
-        }
-      >
-        {productsCount > 0 ? <P>Your basket:</P> : ""}
-        <Close>
-          <IoMdClose onClick={handleClose} />
+      <ModalHeader>
+        <P>Your basket:</P>
+        <Close onClick={handleClose}>
+          <CloseIcon width="34" height="34" />
         </Close>
       </ModalHeader>
-      {productsCount > 0 ? (
-        <>
-          {cart.items.map((currentProduct, i) => (
-            <CartProduct
-              key={i}
-              id={currentProduct.id}
-              quantity={currentProduct.quantity}
-              name={currentProduct.name}
-              img={currentProduct.img}
-            />
-          ))}
-          <RowCheckout>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <img
-                src={stripe_img}
-                style={{
-                  width: "60px",
-                  height: "28px",
-                  marginRight: "17px",
-                  borderRadius: "12px",
-                }}
-                alt="Stripe"
-              />
-              <p>
-                Total:{" "}
-                <span style={{ fontWeight: "500" }}>
-                  £{cart.getTotalCost().toFixed(2)}
-                </span>
-              </p>
-            </div>
-            <CheckoutButton onClick={checkout}>Checkout</CheckoutButton>
-          </RowCheckout>
-        </>
-      ) : (
-        <>
-          <h5
+      {cart.items.map((currentProduct, i) => (
+        <CartProduct
+          key={i}
+          id={currentProduct.id}
+          quantity={currentProduct.quantity}
+          name={currentProduct.name}
+          img={currentProduct.img}
+        />
+      ))}
+      <RowCheckout>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <img
+            src={stripe_img}
             style={{
-              textTransform: "sentence",
-              fontWeight: "300",
-              marginTop: "18px",
-              marginBottom: "28px",
-              fontSize: "15px",
+              width: "60px",
+              height: "28px",
+              marginRight: "17px",
+              borderRadius: "12px",
+              border: "1px solid #333",
             }}
-          >
-            Click{" "}
-            <MdOutlineAddShoppingCart
-              style={{
-                fontSize: "36px",
-                cursor: "pointer",
-                margin: "0 6px -14px 6px",
-              }}
-              onClick={() => window.location.assign("/")}
-            />
-            to add items
-          </h5>
-        </>
-      )}
-      {productsCount === 0 && timer()}
+            alt="Stripe"
+          />
+          <p>
+            Total:{" "}
+            <span style={{ fontWeight: "500" }}>
+              £{cart.getTotalCost().toFixed(2)}
+            </span>
+          </p>
+        </div>
+        <CheckoutButton onClick={checkout}>Checkout</CheckoutButton>
+      </RowCheckout>
     </ModalWrapper>
   );
 };
@@ -153,17 +120,14 @@ const ModalHeader = styled.header`
   justify-content: space-between;
   padding-bottom: 0.6rem;
   font-weight: 500;
+  border-bottom: 2px solid #333;
 `;
 
 const Close = styled.div`
-  font-size: 36px;
   cursor: pointer;
   position: absolute;
-  right: 24px;
-  top: 4px;
-  @media (max-width: 460px) {
-    font-size: 30px;
-  }
+  right: 14px;
+  top: 10px;
 `;
 
 const RowCheckout = styled.div`

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import styled from "styled-components";
-import AddToCartIcon from "../../assets/svg/AddToCart-Icon";
+import AddToCartIcon from "../../assets/svg/AddToCartIcon";
 import { CartContext } from "../../utils/CartContext";
 
 const Cart = ({ handleShow, click }) => {

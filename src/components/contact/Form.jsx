@@ -10,7 +10,7 @@ const Form = () => {
 
     let myForm = document.getElementById("contactForm");
     let formData = new FormData(myForm);
-    console.log("Form Data: ", Object.fromEntries(formData));
+    console.log("Form Data: ", Object.fromEntries(formData.entries()));
 
     fetch("/", {
       method: "POST",
@@ -29,7 +29,7 @@ const Form = () => {
 
   return (
     <MainContainer>
-      <FromContainer>
+      <FormContainer>
         <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
           id="contactForm"
@@ -52,7 +52,7 @@ const Form = () => {
             <span style={{ color: "var(--color-accent)", fontSize: "28px" }}>
               *
             </span>
-            <Input id="email" type="email" name="email" required="required" />
+            <Input id="email" type="email" name="email" required />
           </Label>
 
           <Label htmlFor="textarea">
@@ -60,7 +60,7 @@ const Form = () => {
             <span style={{ color: "var(--color-accent)", fontSize: "28px" }}>
               *
             </span>
-            <TextArea id="textarea" type="textarea" name="textarea" />
+            <TextArea id="textarea" name="message" />
           </Label>
 
           <Label htmlFor="checkbox">
@@ -71,7 +71,7 @@ const Form = () => {
                 alignItems: "center",
               }}
             >
-              <Checkbox type="checkbox" required="required" />
+              <Checkbox type="checkbox" required />
               <CheckText>
                 I am happy to receive emails regarding this message & according
                 to the{" "}
@@ -89,12 +89,12 @@ const Form = () => {
 
           <InputButton type="submit" value="Send a message" />
         </StyledForm>
-      </FromContainer>
+      </FormContainer>
     </MainContainer>
   );
 };
 
-const FromContainer = styled.div`
+const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,22 +127,22 @@ const StyledForm = styled.form`
 
 const Input = styled.input`
   width: 100%;
-  padding: 7px;
+  padding: 10px;
   height: 32px;
   border-radius: 6px;
-  outline: 0.5px dotted black;
-  font-size: 22px;
-  box-shadow: 0.1875rem 0.3125rem 1.125rem rgba(3, 3, 3, 0.2);
+  font-size: 16px;
+  border: 0.5px dotted #333;
   @media (max-width: 440px) {
     font-size: 16px;
   }
 `;
+
 const TextArea = styled.textarea`
   width: 100%;
   padding: 0.5rem;
   border-radius: 6px;
-  outline: 0.5px dotted black;
-  font-size: 22px;
+  border: 0.5px dotted black;
+  font-size: 16px;
   height: 140px;
   box-shadow: 0.1875rem 0.3125rem 1.125rem rgba(3, 3, 3, 0.2);
   @media (max-width: 440px) {
@@ -186,14 +186,14 @@ const CheckText = styled.p`
 
 const InputButton = styled.input`
   border-radius: 4px;
-  outline: 1px solid black;
+  border: 1.6px solid #333;
   font-weight: 500;
   margin-top: 20px;
   font-size: 18px;
-  padding: 0.4rem 0.6rem;
+  padding: 0.4rem 0.5rem;
   position: relative;
   left: 50%;
-  width: 180px;
+  width: 160px;
   transform: translate(-50%);
   background: var(--color-primary);
   cursor: pointer;

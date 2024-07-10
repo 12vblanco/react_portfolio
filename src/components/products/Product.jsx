@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { ImInfo } from "react-icons/im";
 import styled from "styled-components";
+import InfoIcon from "../../assets/svg/InfoIcon";
 import AddToButton from "./AddToButton";
 
 const Product = ({ handleShow, product }) => {
@@ -17,11 +17,13 @@ const Product = ({ handleShow, product }) => {
     <>
       <ProductWrapper>
         <Info onClick={clickHandler}>
-          {product.name === "Fraxinus excelsior A4" ? (
-            <ImInfo style={{ color: "var(--color-bg)" }} />
-          ) : (
-            <ImInfo style={{ color: "var(--color-secondary)" }} />
-          )}
+          <InfoIcon
+            color={
+              product.name === "Fraxinus excelsior A4"
+                ? "var(--color-bg)"
+                : "#333"
+            }
+          />
         </Info>
         <div onClick={clickHandler}>
           {showInfo && (
@@ -50,7 +52,13 @@ const Product = ({ handleShow, product }) => {
 
 Product.propTypes = {
   handleShow: PropTypes.func,
-  product: PropTypes.func,
+  product: PropTypes.shape({
+    name: PropTypes.string,
+    description: PropTypes.string,
+    img: PropTypes.string,
+    format: PropTypes.string,
+    price: PropTypes.number,
+  }),
 };
 
 const ProductWrapper = styled.div`
