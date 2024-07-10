@@ -32,9 +32,10 @@ const Form = () => {
       <FormContainer>
         <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
-          id="contact-form"
-          name="contact"
-          method="post"
+          id="styledContactForm"
+          name="contactForm"
+          method="POST"
+          data-netlify="true"
           data-netlify-honeypot="bot-field"
           data-netlify-recaptcha="true"
           onSubmit={onSubmitHandler}
