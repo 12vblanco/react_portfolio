@@ -8,7 +8,7 @@ const Form = () => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    let myForm = document.getElementById("contactForm");
+    let myForm = document.getElementById("styledContactForm");
     let formData = new FormData(myForm);
     console.log("Form Data: ", Object.fromEntries(formData.entries()));
 
@@ -32,7 +32,7 @@ const Form = () => {
       <FormContainer>
         <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
-          id="contactForm"
+          id="styledContactForm"
           name="contactForm"
           method="POST"
           data-netlify="true"
