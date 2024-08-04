@@ -7,24 +7,14 @@ const Form = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
-    let myForm = document.getElementById("styledContactForm");
-    let formData = new FormData(myForm);
-    console.log("Form Data: ", Object.fromEntries(formData.entries()));
-
+    const form = e.target;
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      body: new URLSearchParams(new FormData(form)).toString(),
     })
-      .then(() => {
-        console.log("Form submission successful");
-        navigate("/Success");
-      })
-      .catch((error) => {
-        console.error("Form submission error:", error);
-        alert(error);
-      });
+      .then(() => navigate("/Success"))
+      .catch((error) => alert(error));
   };
 
   return (
@@ -32,20 +22,13 @@ const Form = () => {
       <FormContainer>
         <H2>Please send us any requests or queries using this form:</H2>
         <StyledForm
-          id="styledContactForm"
           name="contactForm"
           method="POST"
           data-netlify="true"
           data-netlify-honeypot="bot-field"
-          data-netlify-recaptcha="true"
           onSubmit={onSubmitHandler}
         >
-          <input
-            type="hidden"
-            name="form-name"
-            value="contactForm"
-            data-netlify-recaptcha="true"
-          />
+          <input type="hidden" name="form-name" value="contactForm" />
           <input type="hidden" name="bot-field" />
 
           <Label htmlFor="name">

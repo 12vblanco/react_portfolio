@@ -109,7 +109,7 @@ const NavUl = styled.ul`
 `;
 
 const Img = styled.img`
-  width: 70px;
+  width: 60px;
   height: auto;
   @media (max-width: 480px) {
     width: 40px;

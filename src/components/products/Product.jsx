@@ -92,7 +92,7 @@ const RowDiv = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const Img = styled.img`
@@ -128,7 +128,7 @@ const Price = styled.span`
   position: relative;
   font-weight: 500;
   top: -3px;
-  margin-left: 4px;
+  margin-right: 12px;
   @media (max-width: 340px) {
     font-size: 16px;
   }

@@ -9,14 +9,13 @@
 </head>
 
 <body>
-    <form name="contactForm" netlify data-netlify-honeypot="bot-field" hidden action="/Success">
+    <form name="contactForm" netlify data-netlify-honeypot="bot-field" data-netlify-recaptcha="true" hidden>
+        <input type="hidden" name="form-name" value="contactForm" />
         <input type="hidden" name="bot-field" />
         <input type="text" name="name" />
         <input type="email" name="email" />
-        <input type="tel" name="phone" />
-        <input type="checkbox" name="consent" />
-        <input type="submit" name="submit" />
         <textarea name="message"></textarea>
+        <input type="checkbox" name="consent" />
     </form>
 </body>
 
