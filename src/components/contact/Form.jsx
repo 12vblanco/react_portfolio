@@ -7,14 +7,26 @@ const Form = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    console.log("Form submitted");
     const form = e.target;
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams(new FormData(form)).toString(),
     })
-      .then(() => navigate("/Success"))
-      .catch((error) => alert(error));
+      .then((response) => {
+        console.log("Response received", response);
+        if (response.ok) {
+          console.log("Submission successful");
+          navigate("/Success");
+        } else {
+          throw new Error("Form submission failed");
+        }
+      })
+      .catch((error) => {
+        console.error("Submission error", error);
+        alert(error);
+      });
   };
 
   return (
@@ -60,7 +72,7 @@ const Form = () => {
                 alignItems: "center",
               }}
             >
-              <Checkbox type="checkbox" required />
+              <Checkbox type="checkbox" name="consent" required />
               <CheckText>
                 I am happy to receive emails regarding this message & according
                 to the{" "}
